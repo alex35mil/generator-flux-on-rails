@@ -1,0 +1,191 @@
+/* Position utility.
+ *
+ * Synopsis:
+ *  fixed: [n] | <pos> [n]
+ *
+ * Examples:
+ *
+ *    pos(0 0 0 0)
+ *      yields:
+ *        top: 0
+ *        right: 0
+ *        bottom: 0
+ *        left: 0
+ *
+ *    fixed(5px 0px)
+ *      yields:
+ *        position: fixed
+ *        top: 5px
+ *        right: 0px
+ *
+ *    fixed(bottom 5px)
+ *      yields:
+ *        position: fixed
+ *        bottom: 5px
+ *
+ *    absolute(top 10px bottom 5px)
+ *      yields:
+ *        position: absolute
+ *        top: 10px
+ *        bottom: 5px
+ *
+ */
+
+-pos(args, type = false)
+
+  sides = top right bottom left
+  allprops = true
+
+  if type == 'padding' || type == 'margin'
+    if length(args) == 1
+      for arg, i in args
+        {type}: arg
+    else if length(args) == 2
+      for arg, i in args
+        if ! args[i] == '0'
+          {type}-{sides[0+i]}: arg
+          {type}-{sides[2+i]}: arg
+    else
+      for arg, i in args
+        if ! args[i] == '0'
+          {type}-{sides[i]}: arg
+
+  else
+    for arg, i in args
+      if arg == 'top' || arg == 'right' || arg == 'bottom' || arg == 'left'
+        {args[i]}: args[i+1]
+        allprops = false
+      else
+        if (allprops)
+          {sides[i]}: arg
+
+pos()
+  -pos(arguments)
+
+fixed()
+  position: fixed
+  -pos(arguments)
+
+absolute()
+  position: absolute
+  -pos(arguments)
+
+relative()
+  position: relative
+  -pos(arguments)
+
+
+
+/* Size utility.
+ *
+ * Synopsis:
+ *  size: <width> <height> | <width & height>
+ *
+ * Examples:
+ *
+ *    size(100% 30px)
+ *      yields:
+ *        width: 100%
+ *        height: 30px
+ *
+ *    size(5px)
+ *      yields:
+ *        width: 5px
+ *        height: 5px
+ *
+ */
+
+size()
+  if length(arguments) == 1
+    width: arguments[0]
+    height: arguments[0]
+  else
+    width: arguments[0]
+    height: arguments[1]
+
+
+
+/*
+ * Border triangles utility.
+ *
+ * Synopsis:
+ *   css-triangle: <size> <color> <direction>
+ *
+ * Examples:
+ *
+ *    css-triangle(5px #000 top)
+ *      yields:
+ *        content: ''
+ *        display: block
+ *        width: 0
+ *        height: 0
+ *        border: inset 5px
+ *        border-color: transparent transparent #000 transparent
+ *        border-bottom-style: solid
+ *
+ */
+
+css-triangle($triangle-size, $triangle-color, $triangle-direction)
+  content: ""
+  display: block
+  width: 0
+  height: 0
+  border: inset $triangle-size
+  if ($triangle-direction == top)
+    border-color: transparent transparent $triangle-color transparent
+    border-bottom-style: solid
+  if ($triangle-direction == right)
+    border-color: transparent transparent transparent $triangle-color
+    border-left-style: solid
+  if ($triangle-direction == bottom)
+    border-color: $triangle-color transparent transparent transparent
+    border-top-style: solid
+  if ($triangle-direction == left)
+    border-color: transparent $triangle-color transparent transparent
+    border-right-style: solid
+
+
+
+
+/*
+ * Hide text
+ *
+ */
+
+hide-text()
+  text-indent: 200%
+  white-space: nowrap
+  overflow: hidden
+
+
+
+
+/*
+ * Font connect
+ *
+ */
+
+font-connect(family, src)
+  font-family: family
+  src: url(src + ".eot")
+  src: url(src + ".eot?#iefix") format("embedded-opentype"), //url(src + ".woff2") format("woff2"),
+    url(src + ".woff") format("woff"),
+    url(src + ".ttf") format("truetype"),
+    url(src + ".svg?#" + family) format("svg")
+  font-weight: normal
+  font-style: normal
+
+
+
+/*
+ * Font rendering OS X
+ *
+ */
+
+font-smoothing(active = true)
+  if active == true
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+  else
+    -webkit-font-smoothing: subpixel-antialiased
+    -moz-osx-font-smoothing: auto

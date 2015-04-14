@@ -1,0 +1,22 @@
+html
+  font: $base-font-size/$base-line-hight $base-font-family
+  font-smoothing()
+
+body
+  background-color: $body-bg-color
+  color: $base-text-color
+
+a
+  color: $base-text-color
+  transition-property: color, background-color
+  transition-duration: $transition-duration
+  &:hover
+    color: $main-color
+
+input
+  transition-property: color, background-color, box-shadow
+  transition-duration: $transition-duration
+
+::selection
+  background: rgba($main-color, 0.33)
+  text-shadow: none

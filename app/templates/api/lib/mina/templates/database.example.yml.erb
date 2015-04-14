@@ -1,0 +1,9 @@
+<%= rails_env %>:
+  adapter: postgresql
+  encoding: unicode
+  database: <%= app_server_name.gsub('-', '_') %>
+  pool: 5
+  username: <%= app_server_name.gsub('-', '_') %>
+  password:
+  host: localhost
+  port: 5432

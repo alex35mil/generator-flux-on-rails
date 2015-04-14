@@ -1,0 +1,39 @@
+{
+  "name": "generator-react-on-rails",
+  "version": "0.0.1",
+  "description": "Scaffolder of isomorphic NodeJS & ReactJS app, backed by Rails API",
+  "author": {
+    "name": "Alex Fedoseev",
+    "email": "alex.fedoseev@gmail.com",
+    "url": "https://github.com/alexfedoseev"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/alexfedoseev/generator-react-on-rails",
+  "bugs": {
+    "url": "https://github.com/alexfedoseev/generator-react-on-rails/issues"
+  },
+  "main": "app/index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {},
+  "files": [
+    "app"
+  ],
+  "keywords": [
+    "yeoman-generator",
+    "rails",
+    "react",
+    "node",
+    "express",
+    "isomorphic"
+  ],
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "change-case": "^2.3.0",
+    "shelljs": "^0.4.0",
+    "yeoman-generator": "^0.18.9",
+    "yosay": "^1.0.2"
+  },
+  "devDependencies": {}
+}

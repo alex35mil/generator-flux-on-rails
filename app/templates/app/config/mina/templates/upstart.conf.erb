@@ -1,0 +1,37 @@
+description "Upstart script to run a Node.js app as a service"
+author "Alex"
+
+<% scheme = enable_ssl ? 'https://' : 'http://' %>
+env NODE_BIN=/usr/local/bin/node
+env APP_DIR=<%= current_release %>
+env SCRIPT_FILE="server.js"
+env LOG_FILE=<%= upstart_log %>
+env RUN_AS="<%= user %>"
+env GROUP="<%= group %>"
+env SERVER_ENV="production"
+env API_HOST="<%= scheme + public_domain %>"
+env APP_PORT=<%= app_port %>
+env API_PORT=<%= api_port %>
+
+# Start service on startup, stop on shutdown
+start on runlevel [2345]
+stop on runlevel [016]
+
+# Respawn in case of a crash, with default parameters
+respawn
+
+script
+
+  touch $LOG_FILE
+  chown $RUN_AS:$GROUP $LOG_FILE
+
+  chdir $APP_DIR
+
+  NODE_ENV=$SERVER_ENV API_HOST=$API_HOST APP_PORT=$APP_PORT API_PORT=$API_PORT su -s /bin/sh -c 'exec "$0" "$@"' $RUN_AS -- $NODE_BIN $SCRIPT_FILE >> $LOG_FILE 2>&1
+end script
+
+
+post-start script
+  echo "===== App restarted =====" >> $LOG_FILE
+end script
+

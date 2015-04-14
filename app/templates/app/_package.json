@@ -1,0 +1,22 @@
+{
+  "name": "<%= appName %>",
+  "version": "0.0.1",
+  "description": "My awesome app",
+  "homepage": "",
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "license": "MIT",
+  "private": true,
+  "repository":  "<%= repoUrl %>",
+  "main": "server.js",
+  "scripts": {
+    "start": "gulp start:dev",
+    "prod": "gulp start:prod",
+    "build": "gulp"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

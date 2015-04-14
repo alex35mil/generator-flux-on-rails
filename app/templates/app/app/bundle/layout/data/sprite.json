@@ -1,0 +1,94 @@
+{
+    "ico-128": {
+        "x": 0,
+        "y": 0,
+        "width": 128,
+        "height": 128,
+        "source_image": "/Users/Alex/Dev/JS/_my_apps/js-app-starter/src/sprite/ico-128.png",
+        "image": "sprite.png",
+        "total_width": 196,
+        "total_height": 164,
+        "escaped_image": "sprite.png",
+        "offset_x": 0,
+        "offset_y": 0,
+        "px": {
+            "x": "0px",
+            "y": "0px",
+            "offset_x": "0px",
+            "offset_y": "0px",
+            "height": "128px",
+            "width": "128px",
+            "total_height": "164px",
+            "total_width": "196px"
+        }
+    },
+    "ico-32": {
+        "x": 0,
+        "y": 132,
+        "width": 32,
+        "height": 32,
+        "source_image": "/Users/Alex/Dev/JS/_my_apps/js-app-starter/src/sprite/ico-32.png",
+        "image": "sprite.png",
+        "total_width": 196,
+        "total_height": 164,
+        "escaped_image": "sprite.png",
+        "offset_x": 0,
+        "offset_y": -132,
+        "px": {
+            "x": "0px",
+            "y": "132px",
+            "offset_x": "0px",
+            "offset_y": "-132px",
+            "height": "32px",
+            "width": "32px",
+            "total_height": "164px",
+            "total_width": "196px"
+        }
+    },
+    "ico-48": {
+        "x": 132,
+        "y": 68,
+        "width": 48,
+        "height": 48,
+        "source_image": "/Users/Alex/Dev/JS/_my_apps/js-app-starter/src/sprite/ico-48.png",
+        "image": "sprite.png",
+        "total_width": 196,
+        "total_height": 164,
+        "escaped_image": "sprite.png",
+        "offset_x": -132,
+        "offset_y": -68,
+        "px": {
+            "x": "132px",
+            "y": "68px",
+            "offset_x": "-132px",
+            "offset_y": "-68px",
+            "height": "48px",
+            "width": "48px",
+            "total_height": "164px",
+            "total_width": "196px"
+        }
+    },
+    "ico-64": {
+        "x": 132,
+        "y": 0,
+        "width": 64,
+        "height": 64,
+        "source_image": "/Users/Alex/Dev/JS/_my_apps/js-app-starter/src/sprite/ico-64.png",
+        "image": "sprite.png",
+        "total_width": 196,
+        "total_height": 164,
+        "escaped_image": "sprite.png",
+        "offset_x": -132,
+        "offset_y": 0,
+        "px": {
+            "x": "132px",
+            "y": "0px",
+            "offset_x": "-132px",
+            "offset_y": "0px",
+            "height": "64px",
+            "width": "64px",
+            "total_height": "164px",
+            "total_width": "196px"
+        }
+    }
+}

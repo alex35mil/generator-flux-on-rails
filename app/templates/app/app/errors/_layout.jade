@@ -1,0 +1,24 @@
+doctype html
+html
+
+  block vars
+
+  head
+    base(href="/")
+    meta(charset="utf-8")
+
+    title= title
+
+    meta(name="viewport" content="width=device-width")
+
+    meta(name="description" content="")
+    meta(name="keywords" content="")
+
+    link(rel="shortcut icon" href="/favicon.ico")
+
+    style(type='text/css')
+      include _styles.css
+
+  body
+    block body
+    a(href="/") &larr; Get 200 OK
