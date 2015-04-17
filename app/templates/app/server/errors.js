@@ -3,7 +3,8 @@ export default (err, req, res, next) => {
   res.status(err.status);
 
   if (req.accepts('html')) {
-    res.render(`errors/${err.status}`, { url: req.url });
+    let errPartial = parseInt(err.status) >= 500 ? 500 : err.status;
+    res.render(`errors/${errPartial}`, { url: req.url, err: err.status });
   } else {
     res.sendStatus(err.status);
   }
