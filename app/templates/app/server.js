@@ -2,20 +2,19 @@
 
 require('babel/register')({ extensions: ['.js', '.jsx'] });
 
-var express   = require('express'),
-    compress  = require('compression'),
-    parser    = require('body-parser'),
-    path      = require('path');
+var express     = require('express'),
+    compress    = require('compression'),
+    parser      = require('body-parser'),
+    path        = require('path');
 
-var app       = express(),
-    appEnv    = app.get('env');
+var appInitter  = require('./app/bundle/init/server.jsx'),
+    noCache     = require('./server/no-cache'),
+    log         = require('./server/log'),
+    errors      = require('./server/errors'),
+    config      = require('./config/server');
 
-var proxy     = require('./app/api/proxy'),
-    renderer  = require('./app/bundle/init/server.jsx'),
-    noCache   = require('./server/no-cache'),
-    log       = require('./server/log'),
-    errors    = require('./server/errors'),
-    config    = require('./config/server');
+var app         = express(),
+    appEnv      = app.get('env');
 
 
 log(app, appEnv);
@@ -27,8 +26,7 @@ app.use(parser.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(config.apiPath, noCache, proxy);
-app.use('/', noCache, renderer);
+app.use('/', noCache, appInitter);
 
 app.set('view engine', 'jade');
 app.set('views', path.join(__dirname, 'app'));

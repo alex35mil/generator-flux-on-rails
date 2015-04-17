@@ -2,6 +2,10 @@ upstream <%= app_sys_id %> {
   server 127.0.0.1:<%= app_port %>;
 }
 
+upstream <%= app_sys_id %>_api_proxy {
+  server <%= api_domain %>;
+}
+
 server {
   server_name www.<%= public_domain %>;
   rewrite ^(.*) http://<%= public_domain %>$1 permanent;
@@ -24,12 +28,21 @@ server {
   }
 
   location / {
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header Host $http_host;
-      proxy_set_header X-NginX-Proxy true;
-      proxy_pass http://<%= app_sys_id %>;
-      proxy_redirect off;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass http://<%= app_sys_id %>;
+    proxy_redirect off;
+  }
+
+  location /api {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host <%= api_domain %>;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass http://<%= app_sys_id %>_api_proxy/;
+    proxy_redirect off;
   }
 
   error_page 500 502 503 504 /500.html;

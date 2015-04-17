@@ -23,8 +23,6 @@ task :set_defaults do
   set_default :configs_tmp_path,  "#{tmp_path}/deploy_configs"
 
   set_default :app_port,          3500
-  set_default :api_port,          3000
-
   set_default :nginx_port,        80
   set_default :nginx_config,      "/etc/nginx/sites-enabled/#{app_sys_id!}"
   set_default :nginx_log,         "/var/log/nginx/#{app_sys_id!}.log"

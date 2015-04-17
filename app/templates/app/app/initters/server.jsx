@@ -9,7 +9,7 @@ export default (req, res, next, routes, layout, locals) => {
 
   Router.run(routes, req.url, (Handler, state) => {
 
-    const host = `${req.protocol}://${req.headers.host}`;
+    const host = `${req.protocol}://api.${req.headers.host}`;
 
     request({
       method: 'get',

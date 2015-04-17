@@ -10,10 +10,7 @@ Group=<%= group %>
 
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
-<% scheme = enable_ssl ? 'https://' : 'http://' %>
-Environment=API_HOST=<%= scheme + public_domain %>
 Environment=APP_PORT=<%= app_port %>
-Environment=API_PORT=<%= api_port %>
 
 WorkingDirectory=<%= current_release %>
 

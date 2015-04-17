@@ -29,7 +29,7 @@ task :set_defaults do
   set_default :unicorn_symlink,   "unicorn_#{app_sys_id!}"
   set_default :unicorn_script,    "/etc/init.d/#{unicorn_symlink}"
 
-  set_default :nginx_port,        3000
+  set_default :nginx_port,        80
   set_default :nginx_config,      "/etc/nginx/sites-enabled/#{app_sys_id!}"
   set_default :nginx_log,         "/var/log/nginx/#{app_sys_id!}.log"
   set_default :nginx_error_log,   "/var/log/nginx/#{app_sys_id!}.error.log"
