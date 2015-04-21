@@ -4,6 +4,8 @@
 
 Scaffolder of Node.js & React isomorphic app, backed by Rails API.
 
+Pls follow up this [series of posts @medium](https://medium.com/@alexfedoseev/isomorphic-react-with-rails-part-i-440754e82a59)
+
 This generator will create 2 apps:
 
 * JS app
