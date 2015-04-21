@@ -4,7 +4,9 @@
 
 Scaffolder of Node.js & React isomorphic app, backed by Rails API.
 
-Pls follow up this [series of posts @medium](https://medium.com/@alexfedoseev/isomorphic-react-with-rails-part-i-440754e82a59)
+Pls follow up this [series of posts @medium](https://medium.com/@alexfedoseev/isomorphic-react-with-rails-part-i-440754e82a59)  
+Also check out these example apps: [JS App](https://github.com/alexfedoseev/isomorphic-comments-app) | [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
+Live demo: [Isomorphic comments app](http://isomorphic-comments.alexfedoseev.com)
 
 This generator will create 2 apps:
 
