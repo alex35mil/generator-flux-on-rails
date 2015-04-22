@@ -1,6 +1,6 @@
 {
   "name": "generator-react-on-rails",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Scaffolder of isomorphic NodeJS & ReactJS app, backed by Rails API",
   "author": {
     "name": "Alex Fedoseev",
