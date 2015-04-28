@@ -1,11 +1,4 @@
-export default (localPath) => {
-
-  const mappings = [
-    {
-      req    : '/',
-      apiPath: '/component'
-    }
-  ];
+export default (localPath, mappings) => {
 
   for (let mapping of mappings) {
     if (mapping.req === localPath) {

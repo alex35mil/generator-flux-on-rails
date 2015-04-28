@@ -10,6 +10,9 @@ gem 'exception_notification'
 
 gem 'pg'
 
+gem 'devise'
+gem 'simple_token_authentication'
+
 gem 'unicorn'
 
 group :development do

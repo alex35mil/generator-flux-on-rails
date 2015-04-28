@@ -5,6 +5,7 @@ require('babel/register')({ extensions: ['.js', '.jsx'] });
 var express     = require('express'),
     compress    = require('compression'),
     parser      = require('body-parser'),
+    cookies     = require('cookie-parser'),
     path        = require('path');
 
 var appInitter  = require('./app/bundle/init/server.jsx'),
@@ -23,6 +24,8 @@ app.use(compress({ level: 5, memLevel: 5 }));
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
+
+app.use(cookies());
 
 app.use(express.static(path.join(__dirname, 'public')));
 

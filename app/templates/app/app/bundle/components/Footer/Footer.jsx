@@ -1,5 +1,9 @@
 import React  from 'react';
 
+
+// const FooterProps = {};
+
+
 export default class Footer extends React.Component {
 
   render() {

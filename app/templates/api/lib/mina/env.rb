@@ -3,6 +3,7 @@ require 'fileutils'
 set(:config_files, %w(
   nginx.conf
   database.example.yml
+  environment_variables.example.yml
   unicorn.rb
   unicorn_init.sh
   logrotate

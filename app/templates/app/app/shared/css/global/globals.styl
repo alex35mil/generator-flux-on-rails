@@ -17,6 +17,9 @@ input
   transition-property: color, background-color, box-shadow
   transition-duration: $transition-duration
 
+input[type=submit]:disabled
+  transition-duration: 0s
+
 ::selection
   background: rgba($main-color, 0.33)
   text-shadow: none

@@ -1,0 +1,47 @@
+#login
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+  form
+    margin: 1rem 0
+
+    @media mqPhone
+      margin: 0
+
+    input
+      width: 40%
+      margin-right: 1%
+      padding: 1rem 1.5rem
+      border: 0
+      border-radius: 8px
+      background-color: #fffbe0
+      &:focus
+        box-shadow: inset 2px 2px 0 #f4f5f7, 0px 0px 5px 0px rgba(#1ea9ff, 0.95)
+
+      @media mqPhone
+        margin: 0 0 1%
+        width: 50%
+        font-size: .8rem
+        padding: .5rem 1rem
+
+
+    .submit-wrapper
+      position: relative
+      display: inline-block
+      width: 18%
+
+      @media mqPhone
+        width: 100%
+
+      input[type=submit]
+        width: 100%
+        margin: 0
+        color: #fff
+        background-color: #ef34a7
+        &:focus
+          box-shadow: none
+        &:disabled
+          background-color: #f69ed4 !important
+          color: rgba(0, 0, 0, 0) !important

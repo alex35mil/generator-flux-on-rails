@@ -18,6 +18,8 @@ module.exports = yeoman.generators.Base.extend({
     this.npmDependencies = [
       'babel',
       'body-parser',
+      'cookie',
+      'cookie-parser',
       'compression',
       'express',
       'jade',
@@ -356,7 +358,6 @@ module.exports = yeoman.generators.Base.extend({
 
       editCore: function() {
         this.say.info('Modifying core...');
-        this.render('api/config/_routes.rb', 'config/routes.rb');
         this.injectInto('config/application.rb', 'class Application < Rails::Application', '    config.middleware.use Rack::Deflater');
         this.render('api/lib/_api_constraints.rb', 'lib/api_constraints.rb', { name: this.name });
         this.render('api/app/controllers/_application_controller.rb', 'app/controllers/application_controller.rb');
@@ -369,6 +370,8 @@ module.exports = yeoman.generators.Base.extend({
         this.render('docs/api.rb', 'lib/mina/docs/deploy.rb');
         this.render('api/lib/_deploy_defaults.rb', 'lib/mina/defaults.rb', { repo: this.repoApiSsh });
         this.render('api/config/_deploy.rb', 'config/deploy.rb', { name: this.name });
+        this.render('api/config/_environment_variables.yml', 'config/environment_variables.yml');
+        this.copy('api/config/initializers/!environment_variables.rb', 'config/initializers/');
       }.bind(this),
 
       setupTests: function() {
@@ -378,6 +381,18 @@ module.exports = yeoman.generators.Base.extend({
         this.render('api/spec/libs/_api_constraints_spec.rb', 'spec/libs/api_constraints_spec.rb', { name: this.name });
         this.copy('api/spec/support/', 'spec/support/');
         this.injectInto('spec/spec_helper.rb', 'RSpec.configure do |config|', '  config.include Requests::JsonHelpers, type: :request');
+      }.bind(this),
+
+      setupAuth: function() {
+        this.say.info('Setting up authentication...');
+        this.rvmExec('rails generate devise:install');
+        this.rvmExec('rails generate devise User');
+        this.injectInto('app/models/user.rb', ':recoverable, :rememberable, :trackable, :validatable', '  acts_as_token_authenticatable');
+        this.rvmExec('rails generate serializer User');
+        this.copy('api/app/serializers/user_serializer.rb', 'app/serializers/');
+        this.injectInto('config/initializers/devise.rb', 'Devise.setup do |config|', "  config.secret_key = ENV['DEVISE_SECRET_KEY'] if Rails.env.production?");
+        this.render('api/config/_routes.rb', 'config/routes.rb');
+
       }.bind(this),
 
       gitRemote: function() {
@@ -463,6 +478,7 @@ module.exports = yeoman.generators.Base.extend({
       this.api.editCore();
       this.api.setupDeploy();
       this.api.setupTests();
+      this.api.setupAuth();
       this.shared.gitInit();
       this.api.gitRemote();
 
@@ -482,6 +498,13 @@ module.exports = yeoman.generators.Base.extend({
 
       if (this.installApi) {
         this.say.section('Rails Api');
+        this.say.plain('- Setup User:');
+        this.say.plain('---> Check User model: `app/models/user.rb`');
+        this.say.plain('---> Add `authentication_token` to User migration: `db/migrate/XXXXXXXXXXXXXX_devise_create_users.rb`');
+        this.say.plain('-------> `t.string :authentication_token, null: false, default: ""`');
+        this.say.plain('-------> `add_index :users, :authentication_token, unique: true`');
+        this.say.plain('---> Save & run: `bundle exec rake db:migrate`');
+        this.say.plain('');
         this.say.plain('- Check app configuration.');
         this.say.plain('- Check deploy settings in `config/deploy.rb` & `lib/mina` folder.');
       }

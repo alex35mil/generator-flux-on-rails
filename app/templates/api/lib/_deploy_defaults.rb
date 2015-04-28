@@ -10,7 +10,7 @@ task :set_defaults do
   set_default :user,              'deployer'
   set_default :group,             'deployer'
   set_default :deploy_to,         "/home/#{user}/apps/#{app_server_name}/#{app_rails}"
-  set_default :shared_paths,      ['config/database.yml', 'tmp', 'log']
+  set_default :shared_paths,      ['config/database.yml', 'config/environment_variables.yml', 'tmp', 'log']
   set_default :term_mode,         :system  # `sudo` don't like :pretty
   set_default :rails_env,         :production
   set_default :enable_ssl,        false

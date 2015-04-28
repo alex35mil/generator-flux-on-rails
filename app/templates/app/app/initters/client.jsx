@@ -3,11 +3,26 @@ import Router     from 'react-router';
 import NProgress  from 'nprogress';
 
 import request    from '../api/request';
+import mapper     from '../api/map';
+import auth       from '../api/auth';
+import config     from '../../config/server'
 
 
-export default (routes, title) => {
+export default (routes, mappings, title) => {
+
+  let Render = (Component, props) => {
+
+    React.render(
+        React.createElement(Component, props),
+        document.getElementById('app')
+    );
+
+  };
 
   Router.run(routes, Router.HistoryLocation, (Handler, state) => {
+
+    const apiCall = !mappings.isLocal(state.path);
+    const apiPath = mappings.getApiPath(state.path);
 
     NProgress.configure({
       showSpinner: false,
@@ -15,38 +30,59 @@ export default (routes, title) => {
     });
     NProgress.start();
 
-    request({
-      method: 'get',
-      path  : state.path,
-      cb    : (error, response) => {
+    let auths = auth(document);
 
-        if (response.ok) {
+    let { params, path } = state;
 
-          let { params, path } = state;
+    if (apiCall) {
 
-          React.render(
-              React.createElement(Handler, {
-                path    : path,
-                params  : params,
-                data    : response.body,
-                loaded  : NProgress.done,
-                setTitle: () => {
-                  document.title = `${response.body.title || title.base} | ${title.ending}`;
-                }
-              }),
-              document.getElementById('app')
-          );
+      request({
+        method: 'get',
+        path  : apiPath,
+        auth  : auths.getAuthHeaders(),
+        cb    : (error, response) => {
+
+          if (response.ok) {
+
+            Render(Handler, {
+              path,
+              apiPath,
+              params,
+              data    : response.body,
+              auth    : auths,
+              loading : NProgress.start,
+              loaded  : NProgress.done,
+              setTitle: () => {
+                document.title = `${response.body.title || title.base} | ${title.ending}`;
+              }
+            });
+
+          }
+
+          if (error) {
+
+            /* Handle! */
+
+          }
 
         }
+      });
 
-        if (error) {
+    } else {
 
-          /* Handle! */
-
+      Render(Handler, {
+        path,
+        apiPath,
+        params,
+        auth    : auths,
+        loading : NProgress.start,
+        loaded  : NProgress.done,
+        setTitle: () => {
+          document.title = `${title.base} | ${title.ending}`;
         }
+      });
 
-      }
-    });
+    }
 
   });
 
