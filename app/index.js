@@ -93,11 +93,12 @@ module.exports = yeoman.generators.Base.extend({
       this.say.status(el, 'done ');
     };
 
-    this.injectInto = function(file, baseString, addString) {
-      var _content = this.readFileAsString(file);
+    this.injectInto = function(file, baseString, addString, readFromFile) {
+      var _content  = this.readFileAsString(file),
+          injectant = readFromFile ? fs.readFileSync(this.templatePath(addString)) : addString;
       _content = _content.replace(
           baseString + '\n',
-          baseString + '\n\n' + addString + '\n\n'
+          baseString + '\n\n' + injectant + '\n\n'
       );
       fs.writeFileSync(this.destinationPath(file), _content);
       this.say.status(file, 'done ');
@@ -377,10 +378,12 @@ module.exports = yeoman.generators.Base.extend({
       setupTests: function() {
         this.say.info('Setting up tests...');
         this.rvmExec('rails g rspec:install');
-        shell.mkdir('-p', 'spec/libs');
-        this.render('api/spec/libs/_api_constraints_spec.rb', 'spec/libs/api_constraints_spec.rb', { name: this.name });
-        this.copy('api/spec/support/', 'spec/support/');
-        this.injectInto('spec/spec_helper.rb', 'RSpec.configure do |config|', '  config.include Requests::JsonHelpers, type: :request');
+        shell.mkdir('-p', 'spec/routing');
+        shell.mkdir('-p', 'spec/support');
+        this.render('api/spec/routing/_api_constraints_spec.rb', 'spec/routing/api_constraints_spec.rb', { name: this.name });
+        this.render('api/spec/support/_request_helpers.rb', 'spec/support/request_helpers.rb', { name: this.name });
+        this.copy('api/spec/support/unauthorized_shared_examples.rb', 'spec/support/');
+        this.injectInto('spec/spec_helper.rb', 'RSpec.configure do |config|', 'api/spec/__spec_helper.rb', true);
       }.bind(this),
 
       setupAuth: function() {
@@ -388,6 +391,9 @@ module.exports = yeoman.generators.Base.extend({
         this.rvmExec('rails generate devise:install');
         this.rvmExec('rails generate devise User');
         this.injectInto('app/models/user.rb', ':recoverable, :rememberable, :trackable, :validatable', '  acts_as_token_authenticatable');
+        var migration = fs.readdirSync(this.destinationPath('db/migrate'))[0];
+        this.injectInto('db/migrate/' + migration, 't.string :encrypted_password, null: false, default: ""', '      t.string :authentication_token, null: false, default: ""');
+        this.injectInto('db/migrate/' + migration, 'add_index :users, :reset_password_token, unique: true', '    add_index :users, :authentication_token, unique: true');
         this.rvmExec('rails generate serializer User');
         this.copy('api/app/serializers/user_serializer.rb', 'app/serializers/');
         this.injectInto('config/initializers/devise.rb', 'Devise.setup do |config|', "  config.secret_key = ENV['DEVISE_SECRET_KEY'] if Rails.env.production?");
@@ -500,10 +506,8 @@ module.exports = yeoman.generators.Base.extend({
         this.say.section('Rails Api');
         this.say.plain('- Setup User:');
         this.say.plain('---> Check User model: `app/models/user.rb`');
-        this.say.plain('---> Add `authentication_token` to User migration: `db/migrate/XXXXXXXXXXXXXX_devise_create_users.rb`');
-        this.say.plain('-------> `t.string :authentication_token, null: false, default: ""`');
-        this.say.plain('-------> `add_index :users, :authentication_token, unique: true`');
-        this.say.plain('---> Save & run: `bundle exec rake db:migrate`');
+        this.say.plain('---> Check User migration: `db/migrate/XXXXXXXXXXXXXX_devise_create_users.rb`');
+        this.say.plain('---> Migrate: `bundle exec rake db:migrate`');
         this.say.plain('');
         this.say.plain('- Check app configuration.');
         this.say.plain('- Check deploy settings in `config/deploy.rb` & `lib/mina` folder.');

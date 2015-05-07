@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'api_constraints'
 
 describe ApiConstraints do
@@ -12,15 +12,15 @@ describe ApiConstraints do
 
     context 'when version contains Accept header with API version' do
       it 'matches API version from header' do
-        req = double( host: 'api.lvh.me:3000',
-                      headers: { "Accept" => "application/vnd.<%= name %>.v1+json" })
+        req = double( host: public_url,
+                      headers: { 'Accept' => "application/vnd.<%= name %>.v1+json" })
         expect(api_constraints_v1.matches?(req)).to be true
       end
     end
 
     context 'when no Accept header present' do
       it 'matches default API version' do
-        req = double(host: 'api.lvh.me:3000')
+        req = double(host: public_url)
         expect(api_constraints_v2.matches?(req)).to be true
       end
     end
