@@ -16,3 +16,7 @@
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.after(:each) do
+    FileUtils.rm_rf(Dir["#{Rails.root}/spec/uploads"]) if File.directory?("#{Rails.root}/spec/uploads")
+  end
