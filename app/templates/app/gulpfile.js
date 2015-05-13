@@ -2,9 +2,10 @@
 
 var gulp      = require('gulp'),
     webpack   = require('webpack'),
-    server    = require('gulp-express'),
+    gutil     = require('gulp-util'),
     eslint    = require('gulp-eslint'),
     run       = require('run-sequence'),
+    exec      = require('child_process').exec,
     path      = require('path'),
     del       = require('del');
 
@@ -65,11 +66,24 @@ gulp.task('bundle', function(cb) {
 
 
 
-/* Start express server */
+/* Start express servers */
+
+var startServer = function(path) {
+  var server = exec('node ' + path);
+  server.stdout.on('data', function(data) {
+    gutil.log(data.trim());
+  });
+  server.stderr.on('data', function(data) {
+    gutil.log(gutil.colors.red(data.trim()));
+    gutil.beep();
+  });
+};
 
 gulp.task('server', function() {
 
-  server.run([config.server.path], {}, false);
+  config.server.paths.forEach(function(path) {
+    startServer(path);
+  });
 
 });
 

@@ -13,7 +13,7 @@ module.exports = function(isDevBuild) {
     },
 
     server: {
-      path: './server.js'
+      paths: [ './server.js' ]
     },
 
     lint: {

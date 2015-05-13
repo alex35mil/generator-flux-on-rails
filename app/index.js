@@ -41,7 +41,6 @@ module.exports = yeoman.generators.Base.extend({
       'extract-text-webpack-plugin',
       'gulp',
       'gulp-eslint',
-      'gulp-express',
       'gulp-util',
       'node-notifier',
       'run-sequence',
