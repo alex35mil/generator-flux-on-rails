@@ -1,4 +1,4 @@
-RSpec.shared_examples_for 'unauthorized get request' do
+RSpec.shared_examples_for 'unauthorized GET request' do
 
   context 'when no credentials given' do
     before { get! url, headers }
@@ -12,7 +12,7 @@ RSpec.shared_examples_for 'unauthorized get request' do
 
 end
 
-RSpec.shared_examples_for 'unauthorized post request' do
+RSpec.shared_examples_for 'unauthorized POST request' do
 
   context 'when no credentials given' do
     before { post! url, {sample: :data}, headers }
@@ -26,7 +26,7 @@ RSpec.shared_examples_for 'unauthorized post request' do
 
 end
 
-RSpec.shared_examples_for 'unauthorized patch request' do
+RSpec.shared_examples_for 'unauthorized PATCH request' do
 
   context 'when no credentials given' do
     before { patch! url, {sample: :data}, headers }
@@ -40,7 +40,7 @@ RSpec.shared_examples_for 'unauthorized patch request' do
 
 end
 
-RSpec.shared_examples_for 'unauthorized delete request' do
+RSpec.shared_examples_for 'unauthorized DELETE request' do
 
   context 'when no credentials given' do
     before { delete! url, headers }
