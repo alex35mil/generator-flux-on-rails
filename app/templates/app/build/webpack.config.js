@@ -30,6 +30,7 @@ module.exports = function(isDevBuild) {
     debug  : isDevBuild,
 
     plugins: [
+      new webpack.optimize.OccurenceOrderPlugin(true),
       new extract('[name]' + chunkHash + '.css'),
       new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor' + chunkHash + '.js'),
       new webpack.DefinePlugin({
