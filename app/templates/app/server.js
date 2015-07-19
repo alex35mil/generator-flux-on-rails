@@ -15,7 +15,7 @@ export default (initter, config) => {
   global.__SERVER__ = true;
   global.__DEV__    = config.env !== 'production';
 
-  let app = express();
+  const app = express();
 
   const appEnv = app.get('env');
 
