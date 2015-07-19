@@ -1,19 +1,67 @@
-# generator-react-on-rails
+# generator-flux-on-rails
 
-## [ ... This is Work-In-Progress ... ]
+## [ ... This Doc is Work-In-Progress ... ]
 
-Scaffolder of Node.js & React isomorphic app, backed by Rails API.
+Scaffolder of isomorphic/universal Flux app, backed by Rails API.
 
-Pls follow up this [series of posts @medium](https://medium.com/@alexfedoseev/isomorphic-react-with-rails-part-i-440754e82a59)  
-Also check out these example apps: [JS App](https://github.com/alexfedoseev/isomorphic-comments-app) | [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
-Live demo: [Isomorphic comments app](http://isomorphic-comments.alexfedoseev.com)
+What you'll get with just a few lines in console.
+
+* Isomorphic/universal SPA based on Flux architecture
+* Running on latest versions of `redux` and `react-router`
+* Written on ES6/ES2015 (transpiled by Babel)
+* Multiple bundles ready
+* Simple authentication mechanism
+* `<head>` generation and `<title>` updater
+* Development and production builds (using `webpack` & `gulp`)
+* Hot reloading in development
+* Google Analytics helpers
+* Rails API — up and running
+* Deployment scripts for Flux app and Rails API (using `mina`)
+
+For further details please follow up this [series of posts @medium](https://medium.com/@alexfedoseev/isomorphic-react-with-rails-part-i-440754e82a59)  
+Also check out these example apps: [JS App](https://github.com/alexfedoseev/isomorphic-comments-app) | [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api) (outdated, will update soon)  
+Live demo: [Isomorphic comments app](http://isomorphic-comments.alexfedoseev.com) (outdated, will update soon)
+
+### Technologies used
+
+#### Flux app
+
+* **React @ 0.13.3**
+* **Redux @ 1.0.0-rc** as Flux implementation
+* **React Router @ 1.0.0-beta3** as... Router
+* **Express @ 4.x** as front-end framework
+* **Jade @ 1.x** as template engine
+* **Stylus** as css preprocessor
+* **Babel** as ES6 -> ES5 transpiler
+* **Webpack** as assets bundler
+* **Gulp** as build engine
+* **Eslint** as js linter
+* **Node** as is
+
+#### Rails API
+
+* **Rails @ 4.x** as back-end framework
+* **rails_api gem** as rails-json-api maker
+* **Devise** (with **simple_token_authentication** gem) as authentication engine
+* **Postgres** as database
+* **RVM** as rubies manager
+* **Unicorn** as production server
+
+And
+
+* **Mina** as deploy engine
+* **Nginx** as front-end server
+
+> **This generator will install latest versions of dependencies, so if some npm package or ruby gem will be updated to the next major version (and there will be breaking changes) — something can be broken after installation. I think on the project's creation stage it's better to get an error and update code base to start with the newest available versions of libs, rather than locking dependencies and use outdated packages at the beginning. If you'll face such case, please let me know via issue or pull request. Thanks!**
+
+## Getting Started
 
 This generator will create 2 apps:
 
-* JS app
+* Flux app
 * Rails API
 
-## Getting Started
+Lets do it.
 
 In case you don't have `yo`:
 
@@ -24,20 +72,30 @@ npm install -g yo
 Get `generator`:
 
 ```bash
-npm install -g generator-react-on-rails
+npm install -g generator-flux-on-rails
 ```
 
 Initiate it:
 
 ```bash
-yo react-on-rails
+yo flux-on-rails
 
 # or specify name right here
-yo react-on-rails your-app-name
+yo flux-on-rails your-app-name
 ```
 
 ## [ ... To be continued ... ]
 
+
+## TODO
+
+* Remove `/public` stuff out of repo + symlink it to shared folder on production
+* Improve error handling
+* Re-render and re-fetch everything on logout
+* Add `immutable.js`
+* Add server-side retina detection
+* Add I18n
+* Switch to JWT authentication
 
 ## License
 
