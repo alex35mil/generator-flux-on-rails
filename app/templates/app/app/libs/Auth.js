@@ -1,6 +1,7 @@
 import config   from 'config/server';
 import cookies  from './cookies';
 
+
 export default class Auth {
 
   constructor(context, domain) {
