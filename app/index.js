@@ -122,7 +122,7 @@ module.exports = yeoman.generators.Base.extend({
     var done = this.async();
 
     this.log(yosay(
-      'Welcome to the marvelous ' + chalk.red('React-on-Rails') + ' generator!'
+      'Welcome to the marvelous ' + chalk.red('Flux-on-Rails') + ' generator!'
     ));
 
     var prompts = [
