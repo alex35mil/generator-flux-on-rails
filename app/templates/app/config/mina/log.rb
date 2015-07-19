@@ -1,30 +1,57 @@
 namespace :log do
 
-  desc 'Nginx Log'
-  task 'nginx' do
-    lines = ENV['l'] || 20
-    if ENV['only'] == 'error'
-      queue!  %[sudo tail #{nginx_error_log} --lines=#{lines}]
-    else
-      queue!  %[sudo tail #{nginx_log} --lines=#{lines}]
+  namespace :nginx do
+
+    [ ['app', '{{nginx_app_log}}', '{{nginx_error_app_log}}'] ].each do |unit|
+      desc "Nginx #{unit[0].capitalize} Log"
+      task unit[0].to_sym do
+        lines = ENV['l'] || 20
+        if ENV['only'] == 'error'
+          queue!  %[sudo tail #{render_string unit[2]} --lines=#{lines}]
+        else
+          queue!  %[sudo tail #{render_string unit[1]} --lines=#{lines}]
+        end
+      end
     end
+
   end
 
-  desc 'Express Log'
-  task 'express' do
-    lines = ENV['l'] || 20
-    queue!  %[tail #{express_log} --lines=#{lines}]
+
+  namespace :express do
+
+    [ ['app', '{{express_app_log}}'] ].each do |unit|
+      desc "Express #{unit[0].capitalize} Log"
+      task unit[0].to_sym do
+        lines = ENV['l'] || 20
+        queue!  %[tail #{render_string unit[1]} --lines=#{lines}]
+      end
+    end
+
   end
 
-  desc 'Upstart Log'
-  task 'upstart' do
-    lines = ENV['l'] || 20
-    queue!  %[sudo tail #{upstart_log} --lines=#{lines}]
+
+  namespace :upstart do
+
+    [ ['app', '{{upstart_app_log}}'] ].each do |unit|
+      desc "Upstart #{unit[0].capitalize} Log"
+      task unit[0].to_sym do
+        lines = ENV['l'] || 20
+        queue!  %[sudo tail #{render_string unit[1]} --lines=#{lines}]
+      end
+    end
+
   end
 
-  desc 'Systemd Log'
-  task 'systemd' do
-    queue!  %[sudo journalctl --follow -u #{app_sys_id}]
+
+  namespace :systemd do
+
+    [ ['app', '{{app_sys_id}}'] ].each do |unit|
+      desc "Systemd #{unit[0].capitalize} Log"
+      task unit[0].to_sym do
+        queue!  %[sudo journalctl --follow -u #{render_string unit[1]}]
+      end
+    end
+
   end
 
 end

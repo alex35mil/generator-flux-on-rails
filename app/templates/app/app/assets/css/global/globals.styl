@@ -1,0 +1,30 @@
+html
+  font: $base-font-size/$base-line-height $base-font-family
+  font-smoothing()
+
+  @media mqPhone
+    font-size: $base-font-size-mobile/$base-line-height $base-font-family
+
+body
+  background-color: $body-bg-color
+  color: $base-text-color
+
+a
+  color: $base-text-color
+  text-decoration: none
+  border-bottom: 1px solid alpha($base-text-color, .65)
+  transition-property: color, background-color
+  transition-duration: $transition-duration
+  &:hover
+    color: $base-content-color
+
+input
+  transition-property: color, background-color, box-shadow
+  transition-duration: $transition-duration
+
+input[type=submit]:disabled
+  transition-duration: 0s
+
+::selection
+  background: rgba($main-color, 0.33)
+  text-shadow: none

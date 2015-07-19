@@ -1,0 +1,80 @@
+$fonts-path = "/fonts/"
+
+
+/* Google Fonts */
+
+$sans-font = "NotoSans"
+$sans-font-normal = "NotoSans-normal-400"
+
+$base-font-family = $sans-font, Tahoma, Helvetica, Arial, sans-serif
+
+$BaseFont
+  font-family: $base-font-family
+  font-weight: 400
+
+/*
+ * Uncomment this to use local google font
+ *
+
+@font-face {
+  font-family: $sans-font;
+  font-weight: 400;
+  font-style: normal;
+  src: url($fonts-path + $sans-font-normal + ".eot");
+  src: url($fonts-path + $sans-font-normal + ".eot?#iefix") format("embedded-opentype"),
+  local($sans-font),
+  url($fonts-path + $sans-font-normal + ".woff") format("woff"),
+  url($fonts-path + $sans-font-normal + ".ttf") format("truetype"),
+  url($fonts-path + $sans-font-normal + ".svg#" + $sans-font) format("svg");
+}
+
+@font-face {
+  font-family: $sans-font;
+  font-style: normal;
+  font-weight: 400;
+  src: local($sans-font), url($fonts-path + $sans-font-normal + "-latin.woff2") format('woff2');
+  unicode-range: "U+0000-00FF", "U+0131", "U+0152-0153", "U+02C6", "U+02DA", "U+02DC", "U+2000-206F", "U+2074", "U+20AC", "U+2212", "U+2215", "U+E0FF", "U+EFFD", "U+F000";
+}
+
+@font-face {
+  font-family: $sans-font;
+  font-style: normal;
+  font-weight: 400;
+  src: local($sans-font), url($fonts-path + $sans-font-normal + "-cyr.woff2") format('woff2');
+  unicode-range: "U+0400-045F", "U+0490-0491", "U+04B0-04B1", "U+2116";
+}
+
+ *
+ */
+
+
+/* Icon font */
+
+$icon-font = "icomoon"
+$icon-font-guid = "tfebh"
+$icon-font-file-name = $icon-font
+$icon-font-path = $fonts-path + $icon-font
+
+@font-face {
+  font-family: $base-icon-font;
+  src: url($icon-font-path + ".eot?" + $icon-font-guid);
+  src: url($icon-font-path + ".eot?#iefix" + $icon-font-guid) format("embedded-opentype"),
+  url($icon-font-path + ".ttf?" + $icon-font-guid) format("truetype"),
+  url($icon-font-path + ".woff?" + $icon-font-guid) format("woff"),
+  url($icon-font-path + ".svg?" + $icon-font-guid + "#" + $icon-font) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+$Iconfont
+  font-family: $base-icon-font
+  speak: none
+  font-style: normal
+  font-weight: normal
+  font-variant: normal
+  text-transform: none
+  line-height: 1
+
+[class^="icon-"]
+[class*=" icon-"]
+  @extend $Iconfont

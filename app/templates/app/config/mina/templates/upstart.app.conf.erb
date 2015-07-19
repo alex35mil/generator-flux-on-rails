@@ -1,0 +1,34 @@
+description "Upstart script to run a Node.js app as a service"
+author "Alex"
+
+env NODE_BIN=/usr/local/bin/node
+env APP_DIR=<%= current_release %>
+env SCRIPT_FILE="server.<%= app_part %>.js"
+env LOG_FILE=<%= upstart_app_log %>
+env RUN_AS="<%= user %>"
+env GROUP="<%= group %>"
+env SERVER_ENV="production"
+env APP_PORT=<%= nginx_app_port %>
+
+# Start service on startup, stop on shutdown
+start on runlevel [2345]
+stop on runlevel [016]
+
+# Respawn in case of a crash, with default parameters
+respawn
+
+script
+
+  touch $LOG_FILE
+  chown $RUN_AS:$GROUP $LOG_FILE
+
+  chdir $APP_DIR
+
+  NODE_PATH=. NODE_ENV=$SERVER_ENV APP_PORT=$APP_PORT su -s /bin/sh -c 'exec "$0" "$@"' $RUN_AS -- $NODE_BIN $SCRIPT_FILE >> $LOG_FILE 2>&1
+end script
+
+
+post-start script
+  echo "===== App restarted =====" >> $LOG_FILE
+end script
+

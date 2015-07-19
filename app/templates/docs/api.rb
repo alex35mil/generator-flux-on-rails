@@ -1,5 +1,18 @@
 namespace :docs do
 
+  task :responses do
+    print_stdout    %[200 :ok]
+    print_stdout    %[201 :created]
+    print_stdout    %[204 :no_content]
+    print_stdout    %[401 :unauthorized]
+    print_stdout    %[403 :forbidden]
+    print_stdout    %[404 :not_found]
+    print_stdout    %[422 :unprocessable_entity]
+    print_stdout    %[500 :internal_server_error]
+    print_stdout    %[502 :bad_gateway]
+    print_stdout    %[503 :service_unavailable]
+  end
+
   task :deploy do
 
     print_title     %[Add items to sudoers on #{server} server], 'remote'

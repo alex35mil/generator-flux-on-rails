@@ -1,24 +1,24 @@
 require 'fileutils'
 
 set(:config_files, %w(
-  nginx.conf
-  systemd.service
-  upstart.conf
+  nginx.app.conf
+  systemd.app.service
+  upstart.app.conf
   logrotate
 ))
 
 set(:symlinks, [
                  {
-                     source: 'nginx.conf',
-                     link: '{{nginx_config}}'
+                     source: 'nginx.app.conf',
+                     link: '{{nginx_app_config}}'
                  },
                  {
-                     source: 'systemd.service',
-                     link: '{{systemd_service}}'
+                     source: 'systemd.app.service',
+                     link: '{{systemd_app_service}}'
                  },
                  {
-                     source: 'upstart.conf',
-                     link: '{{upstart_conf}}'
+                     source: 'upstart.app.conf',
+                     link: '{{upstart_app_conf}}'
                  },
                  {
                      source: 'logrotate',
@@ -45,15 +45,27 @@ namespace :env do
     if ENV['only'] == 'nginx'
       invoke :'nginx:reload'
     # elsif ENV['only'] == 'systemd'
-    #   invoke :'systemd:restart'
+    #   invoke :'systemd:app:restart'
     elsif ENV['only'] == 'upstart'
-      invoke :'upstart:stop'
-      invoke :'upstart:start'
+      if ENV['unit'] == 'app'
+        invoke :'upstart:app:stop'
+        invoke :'upstart:app:start'
+      # elsif ENV['unit'] == 'admin'
+      #   invoke :'upstart:admin:stop'
+      #   invoke :'upstart:admin:start'
+      else
+        invoke :'upstart:app:stop'
+        invoke :'upstart:app:start'
+        # invoke :'upstart:admin:stop'
+        # invoke :'upstart:admin:start'
+      end
     else
       invoke :'nginx:reload'
-      invoke :'upstart:stop'
-      invoke :'upstart:start'
-      # invoke :'systemd:restart'
+      invoke :'upstart:app:stop'
+      invoke :'upstart:app:start'
+      # invoke :'upstart:admin:stop'
+      # invoke :'upstart:admin:start'
+      # invoke :'systemd:app:restart'
     end
     print_status 'Done.'
 

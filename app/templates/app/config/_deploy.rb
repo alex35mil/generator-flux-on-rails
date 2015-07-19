@@ -24,6 +24,7 @@ Dir['config/mina/servers/*.rb'].each { |s| load s }
 
 set :app,             '<%= name %>'
 set :app_part,        'app'
+# set :admin_part,      'admin'
 
 set :default_server,  :production
 set :server,          all_servers.include?(ARGV.first) ? ARGV.first : default_server
@@ -44,7 +45,8 @@ task :deploy do
 
     to :launch do
       # invoke :'systemd:restart'
-      invoke :'upstart:restart'
+      invoke :'upstart:app:restart'
+      # invoke :'upstart:admin:restart'
     end
 
   end

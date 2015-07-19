@@ -1,4 +1,4 @@
 'use strict';
 
-var styles  = require('../../app/bundle/layout/layout.styl'),
-    scripts = require('../../app/bundle/init/client.jsx');
+var scripts = require('../../app/bundles/app/initters/client.jsx'),
+    styles  = require('../../app/bundles/app/layouts/Layout.styl');

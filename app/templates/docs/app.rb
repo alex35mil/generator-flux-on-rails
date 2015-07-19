@@ -44,13 +44,14 @@ namespace :docs do
     print_command   %[mina deploy]
     print_stdout    %[# If you're deploying for the first time]
     print_stdout    %[# In `config/deploy.rb`:]
-    print_stdout    %[# Change `invoke :'upstart:restart'` to `invoke :'upstart:start'`]
+    print_stdout    %[# Change `invoke :'upstart:app:restart'` to `invoke :'upstart:app:start'`]
     print_stdout    %[# And bring it back after first deploy]
 
     print_title     %[Everytime you update configs for #{server} server], 'local'
     print_command   %[mina env:update]
     print_command   %[mina env:update only=nginx]
     print_command   %[mina env:update only=upstart]
+    print_command   %[mina env:update only=upstart unit=app]
 
     print_str       %[]
 

@@ -1,42 +1,45 @@
-'use strict';
+import express      from 'express';
+import compressor   from 'compression';
+import parser       from 'body-parser';
+import cookies      from 'cookie-parser';
+import path         from 'path';
 
-require('babel/register')({ extensions: ['.js', '.jsx'] });
-
-var express     = require('express'),
-    compress    = require('compression'),
-    parser      = require('body-parser'),
-    cookies     = require('cookie-parser'),
-    path        = require('path');
-
-var appInitter  = require('./app/bundle/init/server.jsx'),
-    noCache     = require('./server/no-cache'),
-    log         = require('./server/log'),
-    errors      = require('./server/errors'),
-    config      = require('./config/server');
-
-var app         = express(),
-    appEnv      = app.get('env');
+import noCache      from './server/noCache';
+import errors       from './server/errors';
+import logger       from './server/log';
 
 
-log(app, appEnv);
+export default (initter, config) => {
 
-app.use(compress({ level: 5, memLevel: 5 }));
+  global.__CLIENT__ = false;
+  global.__SERVER__ = true;
+  global.__DEV__    = config.env !== 'production';
 
-app.use(parser.json());
-app.use(parser.urlencoded({ extended: true }));
+  let app = express();
 
-app.use(cookies());
+  const appEnv = app.get('env');
 
-app.use(express.static(path.join(__dirname, 'public')));
+  logger(app, appEnv, config.bundle);
 
-app.use('/', noCache, appInitter);
+  app.use(compressor());
 
-app.set('view engine', 'jade');
-app.set('views', path.join(__dirname, 'app'));
-app.use(errors);
+  app.use(parser.json());
+  app.use(parser.urlencoded({ extended: true }));
 
-app.set('port', config.appPort);
+  app.use(cookies());
 
-app.listen(app.get('port'), function() {
-  console.log('> ' + config.env + ' server: running on port ' + this.address().port);
-});
+  app.use(express.static(path.join(__dirname, 'public')));
+
+  app.use('/', noCache, initter);
+
+  app.set('view engine', 'jade');
+  app.set('views', path.join(__dirname, 'app'));
+  app.use(errors);
+
+  app.set('port', config.appPort);
+
+  app.listen(app.get('port'), function() {
+    console.log(`=> 🚀  Express ${config.bundle} ${config.env} server is running on port ${this.address().port}`);  // eslint-disable-line no-console
+  });
+
+}

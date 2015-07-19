@@ -1,0 +1,11 @@
+$sprite = json("../../../assets/json/sprite.json", { hash: true })
+
+[class^="img-"]
+  display: inline-block
+  background-image: url("../images/sprite.png")
+
+for $name, $data in $sprite
+  .img-{$name}
+    add-property("background-position", $data.x * -1px $data.y * -1px)
+    add-property("width", $data.px.width)
+    add-property("height", $data.px.height)

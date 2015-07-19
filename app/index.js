@@ -16,37 +16,48 @@ module.exports = yeoman.generators.Base.extend({
     this.pkg = require('../package.json');
 
     this.npmDependencies = [
+      'axios',
       'babel',
+      'babel-core',
       'body-parser',
+      'compression',
       'cookie',
       'cookie-parser',
-      'compression',
       'express',
+      'immutable',
       'jade',
       'morgan',
       'nprogress',
       'path',
       'react',
-      'react-router',
-      'superagent'
+      'react-redux',
+      'react-router@1.0.0-beta3',
+      'redux@1.0.0-rc',
+      'redux-thunk'
     ];
 
     this.npmDevDependencies = [
       'autoprefixer-loader',
-      'babel-core',
+      'babel-eslint',
       'babel-loader',
       'compression-webpack-plugin',
       'css-loader',
       'del',
       'extract-text-webpack-plugin',
       'gulp',
+      'gulp-changed',
       'gulp-eslint',
+      'gulp-if',
+      'gulp-imagemin',
       'gulp-util',
       'node-notifier',
+      'react-hot-loader',
+      'redux-devtools',
       'run-sequence',
       'style-loader',
       'stylus-loader',
-      'webpack'
+      'webpack',
+      'webpack-dev-server'
     ];
 
     this.say = {
@@ -277,10 +288,14 @@ module.exports = yeoman.generators.Base.extend({
         this.say.info('Setting up project...');
         this.render('app/_package.json', 'package.json', { appName: this.appName, repoUrl: this.repoAppUrl });
         this.copy('app/server.js', '.', 'server.js');
+        this.copy('app/server.app.js', '.', 'server.app.js');
+        this.copy('app/server.dev.js', '.', 'server.dev.js');
         shell.mkdir('config/');
         this.render('app/config/_server.js', 'config/server.js', { name: this.name });
-        this.copy('app/gulpfile.js', '.', 'gulpfile.js');
+        this.copy('app/config/server.app.js', 'config/', 'config/server.app.js');
+        this.copy('app/gulpfile.babel.js', '.', 'gulpfile.babel.js');
         this.copy('app/.eslintrc', '.', '.eslintrc');
+        this.copy('app/.editorconfig', '.', '.editorconfig');
         this.copy('app/app/', 'app/');
         this.copy('app/build/', 'build/');
         this.copy('app/server/', 'server/');

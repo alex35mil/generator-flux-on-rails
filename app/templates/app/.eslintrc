@@ -1,7 +1,11 @@
 {
 
   "globals": {
-    "Global": true
+    "__CLIENT__": true,
+    "__SERVER__": true,
+    "__DEV__": true,
+    "__DEVTOOLS__": true,
+    "ga": true
   },
 
   "ecmaFeatures": {
@@ -9,7 +13,7 @@
     "binaryLiterals": false,
     "blockBindings": true,
     "classes": true,
-    "defaultParams": false,
+    "defaultParams": true,
     "destructuring": true,
     "forOf": true,
     "generators": false,
@@ -33,6 +37,8 @@
     "node": true,
     "browser": true
   },
+
+  "parser": "babel-eslint",
 
   "rules": {
 
@@ -71,8 +77,8 @@
     /* Best Practices */
 
     "block-scoped-var": 2,
-    "complexity": [1, 6],
-    "consistent-return": 1,
+    "complexity": 0,
+    "consistent-return": 0,
     "curly": [1, "multi-line"],
     "default-case": 0,
     "dot-notation": 0,
@@ -81,7 +87,7 @@
     "no-alert": 2,
     "no-caller": 2,
     "no-div-regex": 1,
-    "no-else-return": 1,
+    "no-else-return": 0,
     "no-empty-label": 2,
     "no-eq-null": 2,
     "no-eval": 2,
@@ -156,7 +162,7 @@
     "consistent-this": [1, "self"],
     "eol-last": 1,
     "func-names": 0,
-    "func-style": [1, "expression"],
+    "func-style": 0,
     "key-spacing": [0, {                                                // Should be 1. Eslint bug with `"align": "colon"`.
       "align": "colon",
       "beforeColon": false,
@@ -169,7 +175,7 @@
     "no-inline-comments": 0,
     "no-lonely-if": 2,
     "no-mixed-spaces-and-tabs": 1,
-    "no-multiple-empty-lines": [2, { "max": 2 }],
+    "no-multiple-empty-lines": [2, { "max": 3 }],
     "no-nested-ternary": 2,
     "no-new-object": 2,
     "no-spaced-func": 2,
@@ -189,8 +195,8 @@
     "space-before-blocks": [2, "always"],
     "space-before-function-parentheses": [2, { "anonymous": "never", "named": "never" }],
     "space-in-brackets": 0,
-    "space-in-parens": [2, "never"],
-    "space-infix-ops": 2,
+    "space-in-parens": [1, "never"],
+    "space-infix-ops": 1,
     "space-return-throw-case": 2,
     "space-unary-ops": [1, { "words": true, "nonwords": false }],
     "spaced-line-comment": [1, "always"],
@@ -205,7 +211,7 @@
 
     /* Legacy */
 
-    "max-depth": [1, 3],
+    "max-depth": [1, 4],
     "max-params": [1, 4],
     "no-bitwise": 2
 

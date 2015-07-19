@@ -8,6 +8,6 @@ task :setup do
   queue!  %[mkdir -p "#{logs_path}"]
   queue!  %[chmod g+rx,u+rwx "#{logs_path}"]
 
-  queue!  %[touch "#{express_log}"]
+  queue!  %[touch "#{express_app_log}"]
 
 end

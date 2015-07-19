@@ -1,8 +1,10 @@
+/* eslint no-process-env: 0 */
+
 let config = {};
 
 config.env          = process.env.NODE_ENV  || 'development';
 
-config.appPort      = process.env.APP_PORT  || 3500;
+config.devPort      = 3001;
 
 config.apiName      = '<%= name %>';
 config.apiVersion   = 'v1';

@@ -1,0 +1,50 @@
+$footer-height = 80px
+$footer-padding = 40px
+
+html
+  position: relative
+  min-height: 100%
+
+body
+  margin: 0 0 $footer-height
+
+#layout
+  padding-bottom: $footer-padding
+
+footer
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  height: $footer-height
+  width: 100%
+  background-color: $body-bg-color
+  font-size: .7rem
+
+  #footer__inner
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    width: 100%
+    height: $footer-height
+    background-color: $footer-bg-color
+    display: flex
+    justify-content: center
+    align-items: center
+    border-top: 1px solid #f1f1f1
+    #footer__text
+      flex: 1
+      display: block
+      text-align: center
+      color: $base-text-color
+      a
+        display: inline-block
+        margin: 0 .5rem
+        color: $base-text-color
+        font-weight: 700
+        text-decoration: none
+        border: 0
+        &:hover
+          color: $blue
+          text-decoration: none

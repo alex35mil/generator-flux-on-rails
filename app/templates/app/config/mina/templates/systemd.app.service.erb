@@ -1,0 +1,19 @@
+[Unit]
+Description=<%= app_sys_id %>
+After=network.target
+
+[Service]
+ExecStart=<%= current_release %>/server.<%= app_part %>.js
+Restart=always
+User=<%= user %>
+Group=<%= group %>
+
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_PATH=.
+Environment=NODE_ENV=production
+Environment=APP_PORT=<%= nginx_app_port %>
+
+WorkingDirectory=<%= current_release %>
+
+[Install]
+WantedBy=multi-user.target

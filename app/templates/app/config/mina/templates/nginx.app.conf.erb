@@ -1,0 +1,67 @@
+upstream <%= app_sys_id %> {
+  server 127.0.0.1:<%= nginx_app_port %>;
+}
+
+upstream <%= app_sys_id %>_api_proxy {
+  server <%= app_api_domain %>;
+}
+
+server {
+  server_name www.<%= app_domain %>;
+  rewrite ^(.*) http://<%= app_domain %>$1 permanent;
+}
+
+server {
+  listen <%= nginx_port %>;
+  server_name <%= app_domain %>;
+  root <%= deploy_to %>/current/public;
+
+  rewrite ^/(.*)/$ /$1 permanent;
+
+  access_log /var/log/nginx/<%= app_sys_id %>.log;
+  error_log  /var/log/nginx/<%= app_sys_id %>.error.log;
+
+  location ^~ /assets/ {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  location / {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass http://<%= app_sys_id %>;
+    proxy_redirect off;
+  }
+
+  location /api {
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host <%= app_api_domain %>;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_pass http://<%= app_sys_id %>_api_proxy/;
+    proxy_redirect off;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+}
+
+<% if enable_ssl %>
+server {
+  server_name <%= app_domain %>;
+  listen 443;
+  root <%= deploy_to %>/current/public;
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+
+  ssl on;
+  ssl_certificate <%= deploy_to %>/shared/ssl_cert.crt;
+  ssl_certificate_key <%= deploy_to %>/shared/ssl_private_key.key;
+}
+<% end %>

@@ -8,6 +8,11 @@ class ApplicationController < ActionController::API
   respond_to :json
 
 
+  def auth_preflight
+    head 200
+  end
+
+
   ### CORS Headers
 
   # before_action :set_origin
