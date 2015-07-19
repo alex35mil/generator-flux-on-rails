@@ -1,16 +1,16 @@
 {
-  "name": "generator-react-on-rails",
-  "version": "0.0.5",
-  "description": "Scaffolder of isomorphic NodeJS & ReactJS app, backed by Rails API",
+  "name": "generator-flux-on-rails",
+  "version": "0.0.1",
+  "description": "Scaffolder of isomorphic/universal Flux app, backed by Rails API",
   "author": {
     "name": "Alex Fedoseev",
     "email": "alex.fedoseev@gmail.com",
     "url": "https://github.com/alexfedoseev"
   },
   "license": "MIT",
-  "repository": "https://github.com/alexfedoseev/generator-react-on-rails",
+  "repository": "https://github.com/alexfedoseev/generator-flux-on-rails",
   "bugs": {
-    "url": "https://github.com/alexfedoseev/generator-react-on-rails/issues"
+    "url": "https://github.com/alexfedoseev/generator-flux-on-rails/issues"
   },
   "main": "app/index.js",
   "engines": {
@@ -22,11 +22,14 @@
   ],
   "keywords": [
     "yeoman-generator",
-    "rails",
+    "flux",
     "react",
+    "redux",
     "node",
     "express",
-    "isomorphic"
+    "isomorphic",
+    "universal",
+    "rails"
   ],
   "dependencies": {
     "chalk": "^1.0.0",
