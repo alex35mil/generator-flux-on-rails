@@ -21,12 +21,12 @@ export default class Meta {
 
     const base = {
 
-      pageTitle      : 'Redux on Rails scaffolder',
-      pageDescription: 'Will scaffold Redux on Rails App for you.',
+      pageTitle      : 'Flux on Rails scaffolder',
+      pageDescription: 'Will scaffold Flux on Rails App for you.',
       pageKeywords   : 'flux react redux rails',
       pageType       : 'website',
       pageImage      : '/images/cover.png',
-      siteName       : 'Redux on Rails scaffolder',
+      siteName       : 'Flux on Rails scaffolder',
       facebookAppId  : props.facebookAppId || null
 
     };
