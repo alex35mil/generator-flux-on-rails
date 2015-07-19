@@ -1,0 +1,13 @@
+doctype html
+html
+  
+  != head
+
+  body
+    
+    #app!= body
+    
+    script.
+      window.__DATA__ = !{data};
+    script(src="#{vendorAsset}")
+    script(src="#{jsAsset}")
