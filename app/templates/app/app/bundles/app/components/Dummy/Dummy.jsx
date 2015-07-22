@@ -10,6 +10,11 @@ import * as actionTypes   from '../../constants/DummyConstants';
 export default class Dummy extends React.Component {
 
 
+  static contextTypes = {
+    router: PropTypes.object
+  }
+
+
   constructor(props, context) {
     super(props, context);
   }
@@ -32,11 +37,15 @@ export default class Dummy extends React.Component {
   }
 
 
-  _handleLogOut() {
+  _handleLogout() {
 
-    // TODO: Re-render and re-fetch everything on logout
-    const { authAgent, authActions } = this.props;
-    authAgent.logout(authActions.logout);
+    const { authActions, authAgent } = this.props;
+    const { router } = this.context;
+    const { pathname, query } = router.state.location;
+
+    const backPath = router.makePath(pathname, query);
+
+    authActions.logout({ authAgent, router, backPath });
 
   }
 
@@ -50,7 +59,7 @@ export default class Dummy extends React.Component {
         {data} {isLoggedIn ? `You're logged in!` : `You're logged out :(`}
         <div id="auth">
           {isLoggedIn ? (
-            <span onClick={::this._handleLogOut} className="auth-link">logout</span>
+            <span onClick={::this._handleLogout} className="auth-link">logout</span>
           ) : (
             <Link to="/login" className="auth-link">login</Link>
           )}

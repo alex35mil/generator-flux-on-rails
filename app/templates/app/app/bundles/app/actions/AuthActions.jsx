@@ -13,7 +13,7 @@ export function setLoggedInState(user) {
 }
 
 
-export function login({ data, authAgent }) {
+export function login({ data, authAgent, router }) {
 
   return dispatch => {
 
@@ -38,6 +38,7 @@ export function login({ data, authAgent }) {
               type: actionTypes.AUTH_LOGIN_SUCCEED,
               data: res.data
             });
+            if (!router.goBack()) router.transitionTo('/');
 
           }
         });
@@ -56,10 +57,17 @@ export function login({ data, authAgent }) {
 }
 
 
-export function logout() {
+export function logout({ authAgent, router, backPath }) {
 
-  return {
-    type: actionTypes.AUTH_LOGGED_OUT
+  return dispatch => {
+
+    authAgent.logout(() => {
+      dispatch({
+        type: actionTypes.AUTH_LOGGED_OUT
+      });
+      router.transitionTo('/logout', null, { backPath });
+    });
+
   };
 
 }

@@ -38,15 +38,10 @@ export default class Login extends React.Component {
 
   componentWillReceiveProps(newProps) {
 
-    const { type }   = newProps.auth;
-    const { router } = this.context;
+    const { type } = newProps.auth;
 
     if (type === actionTypes.AUTH_LOGIN_FAILED) {
       this._handleFailedSubmit();
-    }
-
-    if (type === actionTypes.AUTH_LOGIN_SUCCEED) {
-      if (!router.goBack()) router.transitionTo('/');
     }
 
   }
@@ -116,9 +111,8 @@ export default class Login extends React.Component {
 
       this._setFormState(attribute.key, isOk);
 
-      if (this._formIsValid && index === attributes.length - 1) {
-        this.setState({ error: null });
-        if (isSubmit) this._handleSuccessSubmit();
+      if (isSubmit && this._formIsValid && index === attributes.length - 1) {
+        this._handleSuccessSubmit();
       }
 
     });
@@ -160,7 +154,7 @@ export default class Login extends React.Component {
       }
     };
 
-    authActions.login({ data, authAgent });
+    authActions.login({ data, authAgent, router });
 
   }
 
