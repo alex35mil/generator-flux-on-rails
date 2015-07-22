@@ -4,7 +4,7 @@
 
 Scaffolder of isomorphic/universal Flux app, backed by Rails API.
 
-[DEMO APP](http://isomorphic-comments.alexfedoseev.com)  |  Sources: [Flux App](https://github.com/alexfedoseev/isomorphic-comments-app) & [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
+[**DEMO APP**](http://isomorphic-comments.alexfedoseev.com)  |  Sources: [Flux App](https://github.com/alexfedoseev/isomorphic-comments-app) & [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
 
 
 What you'll get with just a few lines in console.
