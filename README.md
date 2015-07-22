@@ -4,6 +4,9 @@
 
 Scaffolder of isomorphic/universal Flux app, backed by Rails API.
 
+[DEMO APP](http://isomorphic-comments.alexfedoseev.com)  |  Sources: [Flux App](https://github.com/alexfedoseev/isomorphic-comments-app) & [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
+
+
 What you'll get with just a few lines in console.
 
 * Isomorphic/universal SPA based on Flux architecture
@@ -19,8 +22,6 @@ What you'll get with just a few lines in console.
 * Deployment scripts for Flux app and Rails API (using `mina`)
 
 For further details please follow up this [series of posts @medium](https://medium.com/@alexfedoseev/isomorphic-react-with-rails-part-i-440754e82a59)  
-Also check out these example apps: [Flux App](https://github.com/alexfedoseev/isomorphic-comments-app) | [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
-Live demo: [Isomorphic comments app](http://isomorphic-comments.alexfedoseev.com) (outdated, will update soon)
 
 ### Technologies used
 
