@@ -81,6 +81,8 @@ export default async (req, res, next, params) => {
           facebookAppId,
           fullPath: req.url,
           route   : initialState.branch[1].name,
+          location: initialState.location,
+          params  : initialState.params,
           cssAsset: locals.cssAsset
         })
       );
