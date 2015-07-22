@@ -89,12 +89,12 @@ yo flux-on-rails your-app-name
 
 ## TODO
 
-* Remove `/public` stuff out of repo + symlink it to shared folder on production
-* Improve error handling
-* Add `immutable.js`
-* Add server-side retina detection
-* Add I18n
-* Switch to JWT authentication
+* **[Flux]** Remove `/public` stuff out of repo + symlink it to shared folder on production
+* **[Flux]** Improve error handling
+* **[Flux]** Add `immutable.js`
+* **[Flux]** Add server-side retina detection
+* **[Flux]** Add I18n
+* **[Flux, Rails]** Switch to JWT authentication
 
 ## License
 
