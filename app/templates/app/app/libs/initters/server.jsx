@@ -40,7 +40,7 @@ export default async (req, res, next, params) => {
       })
       .catch(response => {
         return (
-          res.status === 401 ? authAgent.logout() : false
+          response.status === 401 ? authAgent.logout() : false
         );
       });
 
