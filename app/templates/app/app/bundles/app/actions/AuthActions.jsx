@@ -36,7 +36,7 @@ export function login({ data, authAgent, router }) {
 
             dispatch({
               type: actionTypes.AUTH_LOGIN_SUCCEED,
-              data: res.data
+              user: user
             });
             if (!router.goBack()) router.transitionTo('/');
 
@@ -46,9 +46,11 @@ export function login({ data, authAgent, router }) {
       })
       .catch(res => {
         dispatch({
-          type : actionTypes.AUTH_LOGIN_FAILED,
-          code : res.status,
-          error: res.data
+          type  : actionTypes.AUTH_LOGIN_FAILED,
+          errors: {
+            code: res.status,
+            data: res.data
+          }
         });
       });
 

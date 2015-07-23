@@ -7,13 +7,13 @@ const initialState = {
   type      : null,
   user      : null,
   isLoggedIn: false,
-  error     : null,
+  errors    : null,
   isLoading : false
 };
 
 export default function auth(state = initialState, action) {
 
-  const { type, user, code, error } = action;
+  const { type, user, errors } = action;
 
   switch (type) {
 
@@ -22,7 +22,7 @@ export default function auth(state = initialState, action) {
         type,
         user,
         isLoggedIn: true,
-        error     : null,
+        errors    : null,
         isLoading : false
       };
 
@@ -32,7 +32,7 @@ export default function auth(state = initialState, action) {
         type,
         user      : null,
         isLoggedIn: false,
-        error     : null,
+        errors    : null,
         isLoading : true
       };
 
@@ -42,7 +42,7 @@ export default function auth(state = initialState, action) {
         type,
         user,
         isLoggedIn: true,
-        error     : null,
+        errors    : null,
         isLoading : false
       };
 
@@ -50,7 +50,7 @@ export default function auth(state = initialState, action) {
     case actionTypes.AUTH_LOGIN_FAILED:
       return {
         type,
-        error,
+        errors,
         user      : null,
         isLoggedIn: false,
         isLoading : false
@@ -62,7 +62,7 @@ export default function auth(state = initialState, action) {
         type,
         user      : null,
         isLoggedIn: false,
-        error     : null,
+        errors    : null,
         isLoading : false
       };
 

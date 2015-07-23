@@ -6,13 +6,13 @@ import * as actionTypes  from '../constants/DummyConstants';
 const initialState = {
   type     : null,
   data     : null,
-  error    : null,
+  errors   : null,
   isLoading: false
 };
 
 export default function dummy(state = initialState, action) {
 
-  const { type, data, code, error } = action;
+  const { type, data, errors } = action;
 
   switch (type) {
 
@@ -20,7 +20,7 @@ export default function dummy(state = initialState, action) {
       return {
         type,
         data     : null,
-        error    : null,
+        errors   : null,
         isLoading: true
       };
 
@@ -29,7 +29,7 @@ export default function dummy(state = initialState, action) {
       return {
         type,
         data     : data.say,
-        error    : null,
+        errors   : null,
         isLoading: false
       };
 
@@ -37,7 +37,7 @@ export default function dummy(state = initialState, action) {
     case actionTypes.DUMMY_LOAD_FAILED:
       return {
         type,
-        error,
+        errors,
         data     : null,
         isLoading: false
       };

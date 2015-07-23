@@ -25,9 +25,11 @@ export function loadDummy({ apiHost, auth }) {
       })
       .catch(res => {
         dispatch({
-          type : actionTypes.DUMMY_LOAD_FAILED,
-          code : res.status,
-          error: res.data
+          type  : actionTypes.DUMMY_LOAD_FAILED,
+          errors: {
+            code: res.status,
+            data: res.data
+          }
         });
       });
   };
