@@ -97,6 +97,8 @@ yo flux-on-rails my-blog
 
 Before scaffolder start process, you have to answer following questions:
 
+![Installation](https://cloud.githubusercontent.com/assets/4244251/8851727/fdf2c280-3159-11e5-9754-6d6226fc28dc.png)
+
 * **Enter app name:**  
 Specify app's name. Or hit `Enter` if you've already done this within `yo` command.
 * **Choose parts to install:**  
