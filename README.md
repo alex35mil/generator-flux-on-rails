@@ -205,6 +205,8 @@ Special thanks to those who'll correct the grammar issues in this README.
 * **[Flux]** Improve error handling
 * **[Flux]** Add `immutable.js`
 * **[Flux]** Add `redux-devtools`
+* **[Flux]** Rewrite `meta` generator: class -> function
+* **[Flux]** Add notifications from webpack server
 * **[Flux]** Add server-side retina detection
 * **[Flux]** Add I18n
 * **[Flux, Rails]** Switch to JWT authentication
