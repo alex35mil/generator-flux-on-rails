@@ -6,17 +6,25 @@
   transform: translate(-50%, -50%)
   text-align: center
 
-  #auth
-    display: block
-    margin-top: 1rem
-    .auth-link
-      display: inline-block
-      padding: .3rem 1rem
-      border: 1px solid $blue
-      border-radius: 4px
-      background-color: #fff
-      color: $blue
-      text-decoration: none
-      cursor: pointer
-      &:active
-        transform: translate(1px, 1px)
+  $bg-color = #fff
+  #dummy__content
+    display: inline-block
+    padding: 2rem 3rem
+    background-color: $bg-color
+    box-shadow: 0 0 1px rgba(0, 0, 0, .1)
+
+    #dummy__content__auth
+      display: block
+      margin-top: 1rem
+
+      .dummy__content__auth__link
+        display: inline-block
+        padding: .3rem 1rem
+        border: 1px solid $blue
+        border-radius: 4px
+        background-color: $bg-color
+        color: $blue
+        text-decoration: none
+        cursor: pointer
+        &:active
+          transform: translate(1px, 1px)

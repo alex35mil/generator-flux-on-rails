@@ -55,13 +55,13 @@ export default class Dummy extends React.Component {
     const { dummy: { data, isLoading }, auth: { isLoggedIn } } = this.props;
 
     const dummyContent = (
-      <div>
+      <div id="dummy__content">
         {data} {isLoggedIn ? `You're logged in!` : `You're logged out :(`}
-        <div id="auth">
+        <div id="dummy__content__auth">
           {isLoggedIn ? (
-            <span onClick={::this._handleLogout} className="auth-link">logout</span>
+            <span onClick={::this._handleLogout} className="dummy__content__auth__link">logout</span>
           ) : (
-            <Link to="/login" className="auth-link">login</Link>
+            <Link to="/login" className="dummy__content__auth__link">login</Link>
           )}
         </div>
       </div>
