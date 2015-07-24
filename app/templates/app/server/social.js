@@ -1,11 +1,11 @@
-import Axios  from 'axios';
+import request  from 'axios';
 
 export default (req, res, next) => {
 
   switch (req.params.service) {
 
     case 'facebook':
-      Axios.get(`http://graph.facebook.com/?id=${encodeURI(req.query.url)}`)
+      request.get(`http://graph.facebook.com/?id=${encodeURI(req.query.url)}`)
           .then(response => {
             res.send({ shares: response.data.shares });
           })
@@ -15,7 +15,7 @@ export default (req, res, next) => {
       break;
 
     case 'twitter':
-      Axios.get(`http://urls.api.twitter.com/1/urls/count.json?url=${encodeURI(req.query.url)}`)
+      request.get(`http://urls.api.twitter.com/1/urls/count.json?url=${encodeURI(req.query.url)}`)
           .then(response => {
             res.send({ shares: response.data.count });
           })
