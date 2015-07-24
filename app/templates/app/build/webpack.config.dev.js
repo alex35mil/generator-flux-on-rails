@@ -26,7 +26,8 @@ export default {
   resolve: {
     alias: {
       app   : path.join(process.cwd(), 'app'),
-      config: path.join(process.cwd(), 'config')
+      config: path.join(process.cwd(), 'config'),
+      public: path.join(process.cwd(), 'public')
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -55,15 +56,7 @@ export default {
       'process.env': {
         'NODE_ENV': JSON.stringify('development')
       }
-    }),
-    function() {
-      this.plugin('done', stats => {
-        fs.writeFileSync(
-            path.join('./public', 'assets', 'assets.json'),
-            JSON.stringify(stats.toJson().assets)
-        );
-      });
-    }
+    })
   ],
 
   module: {

@@ -93,6 +93,11 @@ export default async (req, res, next, params) => {
         </Provider>
       );
 
+      if (!__DEV__) {
+        const chunks  = require('public/assets/chunk-manifest.json');
+        locals.chunks = JSON.stringify(chunks);
+      }
+
       locals.data = JSON.stringify(state);
 
       const layout = `${process.cwd()}/app/bundles/${bundle}/layouts/Layout.jade`;

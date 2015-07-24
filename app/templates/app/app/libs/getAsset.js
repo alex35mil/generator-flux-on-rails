@@ -1,5 +1,4 @@
 import config   from 'config/server.app';
-import assets   from '../../public/assets/manifest.json';
 
 
 export default (asset, type) => {
@@ -9,6 +8,8 @@ export default (asset, type) => {
     return `http://lvh.me:${config.devPort}/assets/${asset}.${type}`;
 
   } else {
+
+    const assets = require('public/assets/manifest.json');
 
     return `/assets/${assets[`${asset}.${type}`]}`;
 

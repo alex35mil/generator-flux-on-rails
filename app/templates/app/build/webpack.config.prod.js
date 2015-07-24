@@ -25,7 +25,8 @@ export default {
   resolve: {
     alias: {
       app   : path.join(process.cwd(), 'app'),
-      config: path.join(process.cwd(), 'config')
+      config: path.join(process.cwd(), 'config'),
+      public: path.join(process.cwd(), 'public')
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -58,7 +59,7 @@ export default {
     new Manifest(),
     new ChunkManifest({
       filename        : 'chunk-manifest.json',
-      manifestVariable: 'webpackManifest'
+      manifestVariable: '__CHUNKS__'
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
