@@ -40,6 +40,7 @@ module.exports = yeoman.generators.Base.extend({
       'autoprefixer-loader',
       'babel-eslint',
       'babel-loader',
+      'chunk-manifest-webpack-plugin',
       'compression-webpack-plugin',
       'css-loader',
       'del',
@@ -57,7 +58,8 @@ module.exports = yeoman.generators.Base.extend({
       'style-loader',
       'stylus-loader',
       'webpack',
-      'webpack-dev-server'
+      'webpack-dev-server',
+      'webpack-manifest-plugin'
     ];
 
     this.say = {

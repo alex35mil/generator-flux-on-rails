@@ -1,10 +1,12 @@
-import webpack      from 'webpack';
-import extract      from 'extract-text-webpack-plugin';
-import gzip         from 'compression-webpack-plugin';
-import fs           from 'fs';
-import path         from 'path';
+import webpack        from 'webpack';
+import Extract        from 'extract-text-webpack-plugin';
+import Gzip           from 'compression-webpack-plugin';
+import Manifest       from 'webpack-manifest-plugin';
+import ChunkManifest  from 'chunk-manifest-webpack-plugin';
+import fs             from 'fs';
+import path           from 'path';
 
-import vendorDeps   from './vendors';
+import vendorDeps     from './vendors';
 
 
 export default {
@@ -15,8 +17,9 @@ export default {
   },
 
   output: {
-    path    : './public/assets',
-    filename: '[name]-[chunkhash].js'
+    path         : './public/assets',
+    filename     : '[name]-[chunkhash].js',
+    chunkFilename: '[name]-[chunkhash].js'
   },
 
   resolve: {
@@ -35,8 +38,7 @@ export default {
   },
 
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(true),
-    new extract('[name]-[chunkhash].css'),
+    new Extract('[name]-[chunkhash].css'),
     new webpack.optimize.CommonsChunkPlugin({
       name     : 'vendor',
       chunks   : ['app'],
@@ -53,6 +55,12 @@ export default {
       }
     }),
     new webpack.optimize.DedupePlugin(),
+    new Manifest(),
+    new ChunkManifest({
+      filename        : 'chunk-manifest.json',
+      manifestVariable: 'webpackManifest'
+    }),
+    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings     : false,
@@ -60,19 +68,11 @@ export default {
         drop_console : true
       }
     }),
-    new gzip({
+    new Gzip({
       asset    : '{file}.gz',
       algorithm: 'gzip',
       regExp   : /\.js$|\.css$/
-    }),
-    function() {
-      this.plugin('done', stats => {
-        fs.writeFileSync(
-            path.join('./public', 'assets', 'assets.json'),
-            JSON.stringify(stats.toJson().assets)
-        );
-      });
-    }
+    })
   ],
 
   module: {
@@ -81,11 +81,11 @@ export default {
       { test  : /\.jsx?$/, loader: 'babel?stage=0',  exclude: /node_modules/ },
       {
         test  : /\.styl$/,
-        loader: extract.extract('style', 'css!autoprefixer?{browsers:["last 2 version"], cascade:false}!stylus')
+        loader: Extract.extract('style', 'css!autoprefixer?{browsers:["last 2 version"], cascade:false}!stylus')
       },
       {
         test  : /\.css$/,
-        loader: extract.extract('style', 'css!autoprefixer?{browsers:["last 2 version"], cascade:false}')
+        loader: Extract.extract('style', 'css!autoprefixer?{browsers:["last 2 version"], cascade:false}')
       }
     ]
   }
