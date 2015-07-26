@@ -29,13 +29,14 @@ ecmaFeatures:
   forOf: true
   generators: false
   modules: true
-  objectLiteralComputedProperties: false
+  objectLiteralComputedProperties: true
   objectLiteralDuplicateProperties: false
   objectLiteralShorthandMethods: true
-  objectLiteralShorthandProperties: false
+  objectLiteralShorthandProperties: true
   octalLiterals: false
   regexUFlag: false
   regexYFlag: false
+  restParams: true
   spread: true
   superInFunctions: false
   templateStrings: true
