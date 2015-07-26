@@ -1,5 +1,5 @@
 import React                    from 'react';
-import { PropTypes }            from 'react';
+import { PropTypes as Type }    from 'react';
 import { bindActionCreators }   from 'redux';
 import { connect }              from 'react-redux';
 
@@ -21,6 +21,13 @@ import * as DummyActions        from '../../actions/DummyActions';
 }))
 
 export default class DummyContainer extends React.Component {
+
+
+  static propTypes = {
+    auth    : Type.object.isRequired,
+    dummy   : Type.object.isRequired,
+    dispatch: Type.func.isRequired
+  }
 
 
   constructor(props, context) {

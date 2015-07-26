@@ -1,11 +1,16 @@
-import React          from 'react';
-import { PropTypes }  from 'react';
+import React                    from 'react';
+import { PropTypes as Type }    from 'react';
 
-import Header         from '../components/Header/Header';
-import Footer         from '../components/Footer/Footer';
+import Header                   from '../components/Header/Header';
+import Footer                   from '../components/Footer/Footer';
 
 
 export default class Layout extends React.Component {
+
+
+  static propTypes = {
+    children: Type.object
+  }
 
 
   constructor(props, context) {

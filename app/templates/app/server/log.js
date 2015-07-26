@@ -1,6 +1,5 @@
 import logger   from 'morgan';
 import fs       from 'fs';
-import path     from 'path';
 
 export default (app, env, bundle) => {
 

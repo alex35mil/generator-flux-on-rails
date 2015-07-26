@@ -1,7 +1,15 @@
-import React  from 'react';
+import React                    from 'react';
+import { PropTypes as Type }    from 'react';
 
 
 export default class Loader extends React.Component {
+
+
+  static propTypes = {
+    color: Type.string,
+    size : Type.number,
+    width: Type.number
+  }
 
 
   constructor(props) {
@@ -11,9 +19,9 @@ export default class Loader extends React.Component {
 
   render() {
 
+    const color = this.props.color || '#29d';
     const size  = this.props.size  || 30;
     const width = this.props.width || 2;
-    const color = this.props.color || '#29d';
 
     const sizePx  = `${size}px`;
     const widthPx = `${width}px`;

@@ -1,4 +1,4 @@
-'use strict';
+/* eslint no-var: 0 */
 
 require('babel/register')({
   extensions: ['.js', '.jsx'],

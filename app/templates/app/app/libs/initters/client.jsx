@@ -24,7 +24,6 @@ export default (params) => {
 
   const routes    = params.routes({ store });
 
-  const host      = `${document.location.protocol}//${document.location.host}`;
 
   if (params.googleAnalyticsId) {
     analytics.init(params.googleAnalyticsId);

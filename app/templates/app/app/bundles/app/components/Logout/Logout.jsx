@@ -1,12 +1,19 @@
-import React          from 'react';
-import { PropTypes }  from 'react';
+import React                    from 'react';
+import { PropTypes as Type }    from 'react';
 
 
 export default class Logout extends React.Component {
 
 
+  static propTypes = {
+    location: Type.shape({
+      state: Type.object.isRequired
+    }).isRequired
+  }
+
+
   static contextTypes = {
-    router: PropTypes.object
+    router: Type.object.isRequired
   }
 
 

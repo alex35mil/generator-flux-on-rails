@@ -1,5 +1,5 @@
-import React          from 'react';
-import { PropTypes }  from 'react';
+import React                  from 'react';
+import { PropTypes as Type }  from 'react';
 
 
 export default (fetch) => {
@@ -9,7 +9,25 @@ export default (fetch) => {
 
     class FetchDataDecorator extends React.Component {
 
+
       static fetchData = fetch
+
+
+      static propTypes = {
+
+        authAgent: Type.shape({
+          getAuthHeaders: Type.func
+        }),
+
+        store: Type.shape({
+          dispatch: Type.func
+        }),
+
+        location     : Type.object,
+        params       : Type.object,
+        initialRender: Type.bool
+
+      }
 
 
       componentDidMount() {

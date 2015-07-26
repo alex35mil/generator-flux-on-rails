@@ -1,17 +1,44 @@
-import React              from 'react';
-import { PropTypes }      from 'react';
-import { Link }           from 'react-router';
+import React                    from 'react';
+import { PropTypes as Type }    from 'react';
+import { Link }                 from 'react-router';
 
-import Loader             from 'app/libs/components/Loader/Loader';
+import Loader                   from 'app/libs/components/Loader/Loader';
 
-import * as actionTypes   from '../../constants/DummyConstants';
+import * as actionTypes         from '../../constants/DummyConstants';
 
 
 export default class Dummy extends React.Component {
 
 
+  static propTypes = {
+
+    auth: Type.shape({
+      isLoggedIn: Type.bool
+    }).isRequired,
+
+    authActions: Type.shape({
+      logout: Type.func.isRequired
+    }).isRequired,
+
+    dummy: Type.shape({
+      type     : Type.string,
+      data     : Type.string,
+      isLoading: Type.bool
+    }).isRequired,
+
+    authAgent: Type.shape({
+      login : Type.func.isRequired,
+      logout: Type.func.isRequired
+    }),
+
+    loader  : Type.object,
+    setTitle: Type.func
+
+  }
+
+
   static contextTypes = {
-    router: PropTypes.object
+    router: Type.object.isRequired
   }
 
 

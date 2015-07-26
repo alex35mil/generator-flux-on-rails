@@ -1,5 +1,5 @@
 import React                    from 'react';
-import { PropTypes }            from 'react';
+import { PropTypes as Type }    from 'react';
 import { bindActionCreators }   from 'redux';
 import { connect }              from 'react-redux';
 
@@ -13,6 +13,12 @@ import * as AuthActions         from '../actions/AuthActions';
 }))
 
 export default class App extends React.Component {
+
+
+  static propTypes = {
+    auth    : Type.object.isRequired,
+    dispatch: Type.func.isRequired
+  }
 
 
   constructor(props, context) {

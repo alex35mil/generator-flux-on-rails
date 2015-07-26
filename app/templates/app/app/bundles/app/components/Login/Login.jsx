@@ -1,17 +1,39 @@
-import React              from 'react';
-import { PropTypes }      from 'react';
+import React                  from 'react';
+import { PropTypes as Type }  from 'react';
 
-import animate            from 'app/libs/animate';
-import Loader             from 'app/libs/components/Loader/Loader';
+import animate                from 'app/libs/animate';
+import Loader                 from 'app/libs/components/Loader/Loader';
 
-import * as actionTypes   from '../../constants/AuthConstants';
+import * as actionTypes       from '../../constants/AuthConstants';
 
 
 export default class Login extends React.Component {
 
 
+  static propTypes = {
+
+    auth: Type.shape({
+      type     : Type.string,
+      isLoading: Type.bool
+    }).isRequired,
+
+    authActions: Type.shape({
+      login: Type.func.isRequired
+    }).isRequired,
+
+    authAgent: Type.shape({
+      login : Type.func.isRequired,
+      logout: Type.func.isRequired
+    }),
+
+    loader  : Type.object,
+    setTitle: Type.func
+
+  }
+
+
   static contextTypes = {
-    router: PropTypes.object
+    router: Type.object.isRequired
   }
 
 
@@ -181,7 +203,7 @@ export default class Login extends React.Component {
                 value={this.state.login}
                 className={this.state.loginStatus}
                 onChange={::this._handleValueChange}
-                autoFocus
+                autoFocus={true}
             />
             <input
                 type="password"
@@ -194,7 +216,7 @@ export default class Login extends React.Component {
             />
             <div className="button-wrapper">
               <button disabled={isLoading}>Login!</button>
-              { isLoading && <Loader color="#fff" /> }
+              {isLoading && <Loader color="#fff" />}
             </div>
           </form>
         </section>

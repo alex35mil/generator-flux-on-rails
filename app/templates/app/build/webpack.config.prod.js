@@ -3,7 +3,6 @@ import Extract        from 'extract-text-webpack-plugin';
 import Gzip           from 'compression-webpack-plugin';
 import Manifest       from 'webpack-manifest-plugin';
 import ChunkManifest  from 'chunk-manifest-webpack-plugin';
-import fs             from 'fs';
 import path           from 'path';
 
 import vendorDeps     from './vendors';
@@ -24,9 +23,9 @@ export default {
 
   resolve: {
     alias: {
-      app   : path.join(process.cwd(), 'app'),
-      config: path.join(process.cwd(), 'config'),
-      public: path.join(process.cwd(), 'public')
+      'app'   : path.join(process.cwd(), 'app'),
+      'config': path.join(process.cwd(), 'config'),
+      'public': path.join(process.cwd(), 'public')
     },
     extensions: ['', '.js', '.jsx']
   },
@@ -64,9 +63,10 @@ export default {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
-        warnings     : false,
-        drop_debugger: true,
-        drop_console : true
+        'warnings'     : false,
+        'drop_debugger': true,
+        'drop_console' : true,
+        'pure_funcs'   : ['console.log']
       }
     }),
     new Gzip({

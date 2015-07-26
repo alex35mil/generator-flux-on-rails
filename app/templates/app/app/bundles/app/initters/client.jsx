@@ -1,4 +1,4 @@
-import polyfill         from 'babel/polyfill';
+import polyfill         from 'babel/polyfill';  // eslint-disable-line no-unused-vars
 
 import initter          from 'app/libs/initters/client';
 import config           from 'config/server.app';

@@ -1,5 +1,5 @@
 import React                    from 'react';
-import { PropTypes }            from 'react';
+import { PropTypes as Type }    from 'react';
 import { bindActionCreators }   from 'redux';
 import { connect }              from 'react-redux';
 
@@ -20,6 +20,12 @@ export default class LoginContainer extends React.Component {
     const { auth } = this.context.store.getState();
     if (auth.isLoggedIn) transition.to('/');
 
+  }
+
+
+  static propTypes = {
+    auth    : Type.object.isRequired,
+    dispatch: Type.func.isRequired
   }
 
 

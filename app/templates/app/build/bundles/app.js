@@ -1,4 +1,4 @@
-'use strict';
+/* eslint no-unused-vars: 0 */
 
-var scripts = require('../../app/bundles/app/initters/client.jsx'),
-    styles  = require('../../app/bundles/app/layouts/Layout.styl');
+import scripts  from '../../app/bundles/app/initters/client.jsx';
+import styles   from '../../app/bundles/app/layouts/Layout.styl';

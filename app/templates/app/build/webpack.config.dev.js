@@ -1,5 +1,4 @@
 import webpack      from 'webpack';
-import fs           from 'fs';
 import path         from 'path';
 
 import appConfig    from '../config/server.app';
@@ -25,9 +24,9 @@ export default {
 
   resolve: {
     alias: {
-      app   : path.join(process.cwd(), 'app'),
-      config: path.join(process.cwd(), 'config'),
-      public: path.join(process.cwd(), 'public')
+      'app'   : path.join(process.cwd(), 'app'),
+      'config': path.join(process.cwd(), 'config'),
+      'public': path.join(process.cwd(), 'public')
     },
     extensions: ['', '.js', '.jsx']
   },

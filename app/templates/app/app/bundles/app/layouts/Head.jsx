@@ -1,7 +1,6 @@
-import React          from 'react';
-import { PropTypes }  from 'react';
+import React  from 'react';
 
-import Meta           from './Meta';
+import Meta   from './Meta';
 
 
 export default class Head extends React.Component {
