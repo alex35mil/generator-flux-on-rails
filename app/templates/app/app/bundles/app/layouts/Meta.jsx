@@ -31,7 +31,7 @@ export default class Meta {
 
     };
 
-    const { state, route, appHost, fullPath, cssAsset } = props;
+    const { /* state, location, params, */ route, appHost, fullPath, cssAsset } = props;
 
     this.cssAsset      = cssAsset;
     this.appHost       = appHost;
@@ -59,7 +59,7 @@ export default class Meta {
         break;
 
       case 'not-found':
-        this.pageTitle       = `Oops! Nothing here.`;
+        this.pageTitle       = 'Oops! Nothing here.';
         this.pageDescription = '404';
         this.pageKeywords    = base.pageKeywords;
         break;
