@@ -1,8 +1,8 @@
 import gulp         from 'gulp';
 import webpack      from 'webpack';
-import gutil        from 'gulp-util';
-import eslint       from 'gulp-eslint';
+import eslint       from 'eslint/lib/cli';
 import run          from 'run-sequence';
+import gutil        from 'gulp-util';
 import changed      from 'gulp-changed';
 import gulpif       from 'gulp-if';
 import imagemin     from 'gulp-imagemin';
@@ -155,26 +155,10 @@ gulp.task('watch', () => {
 
 /* Lint scripts */
 
-gulp.task('lint', () => {
+gulp.task('lint', done => {
 
-  const items = [
-    '!node_modules',
-    '!node_modules/**',
-    '!public',
-    '!public/**',
-    '!build',
-    '!build/**',
-    '!server.*.js',
-    '!app/libs/vendor',
-    '!app/libs/vendor/**',
-    config.lint.src + '/**/*.{js,jsx}'
-  ];
-
-  return (
-      gulp.src(items)
-          .pipe(eslint())
-          .pipe(eslint.format())
-  );
+  eslint.execute('--ext .js,.jsx ./');
+  done();
 
 });
 

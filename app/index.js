@@ -44,10 +44,11 @@ module.exports = yeoman.generators.Base.extend({
       'compression-webpack-plugin',
       'css-loader',
       'del',
+      'eslint',
+      'eslint-plugin-react',
       'extract-text-webpack-plugin',
       'gulp',
       'gulp-changed',
-      'gulp-eslint',
       'gulp-if',
       'gulp-imagemin',
       'gulp-util',
@@ -297,6 +298,7 @@ module.exports = yeoman.generators.Base.extend({
         this.copy('app/config/server.app.js', 'config/', 'config/server.app.js');
         this.copy('app/gulpfile.babel.js', '.', 'gulpfile.babel.js');
         this.copy('app/.eslintrc', '.', '.eslintrc');
+        this.copy('app/.eslintignore', '.', '.eslintignore');
         this.copy('app/.editorconfig', '.', '.editorconfig');
         this.copy('app/app/', 'app/');
         this.copy('app/build/', 'build/');
