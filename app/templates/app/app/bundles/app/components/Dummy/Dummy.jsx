@@ -59,6 +59,7 @@ export default class Dummy extends React.Component {
 
     if (newProps.dummy.type === actionTypes.DUMMY_LOAD_SUCCEED) {
       newProps.loader.done();
+      this.props.setTitle();
     }
 
   }

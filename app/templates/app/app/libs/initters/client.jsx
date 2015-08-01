@@ -51,7 +51,7 @@ export default (params) => {
           authAgent={authAgent}
           initialRender={initialRender}
           setTitle={setTitle}
-          Meta={params.Meta}
+          meta={params.meta}
           {...props}
       />
     );

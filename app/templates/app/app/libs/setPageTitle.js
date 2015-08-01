@@ -1,14 +1,14 @@
 export default function() {
 
-  const { Meta, route, store, location, params } = this;
+  const { meta, route, store, location, params } = this;
 
-  const meta = new Meta({
+  const { title } = meta({
     location,
     params,
     route: route.name,
     state: store.getState()
   });
 
-  document.title = meta.getTitle();
+  document.title = title;
 
 }

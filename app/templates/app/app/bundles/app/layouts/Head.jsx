@@ -1,6 +1,6 @@
 import React  from 'react';
 
-import Meta   from './Meta';
+import meta   from './meta';
 
 
 export default class Head extends React.Component {
@@ -13,7 +13,18 @@ export default class Head extends React.Component {
 
   render() {
 
-    const meta = new Meta(this.props);
+    const {
+      title,
+      description,
+      keywords,
+      type,
+      image,
+      siteName,
+      appHost,
+      url,
+      facebookAppId,
+      cssAsset
+    } = meta(this.props);
 
     return (
 
@@ -22,26 +33,26 @@ export default class Head extends React.Component {
           <base href="/" />
           <meta charSet="utf-8" />
 
-          <title>{meta.pageTitle}</title>
+          <title>{title}</title>
 
           <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-          {!__DEV__ && <link rel="stylesheet" href={meta.cssAsset} />}
+          {!__DEV__ && <link rel="stylesheet" href={cssAsset} />}
 
-          <meta name="description"  content={meta.pageDescription} />
-          <meta name="keywords"     content={meta.pageKeywords} />
+          <meta name="description"  content={description} />
+          <meta name="keywords"     content={keywords} />
 
-          <meta property="og:type"        content={meta.pageType} />
-          <meta property="og:title"       content={meta.pageTitle} />
-          <meta property="og:site_name"   content={meta.siteName} />
-          <meta property="og:url"         content={meta.pageUrl} />
-          <meta property="og:description" content={meta.pageDescription} />
-          <meta property="og:image"       content={meta.pageImage} />
-          <meta property="fb:app_id"      content={meta.facebookAppId} />
+          <meta property="og:type"        content={type} />
+          <meta property="og:title"       content={title} />
+          <meta property="og:site_name"   content={siteName} />
+          <meta property="og:url"         content={url} />
+          <meta property="og:description" content={description} />
+          <meta property="og:image"       content={image} />
+          <meta property="fb:app_id"      content={facebookAppId} />
 
           <link rel="shortcut icon"     href="/favicon.ico" />
           <link rel="apple-touch-icon"  href="/images/apple-touch-icon.png" />
-          <link rel="image_src"         href={`${meta.appHost}/images/apple-touch-icon.png`} />
+          <link rel="image_src"         href={`${appHost}/images/apple-touch-icon.png`} />
 
         </head>
 
