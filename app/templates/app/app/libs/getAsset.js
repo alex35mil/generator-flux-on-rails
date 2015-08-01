@@ -1,4 +1,4 @@
-import config   from 'config/server.app';
+import config   from 'config/server';
 
 
 export default (asset, type) => {
