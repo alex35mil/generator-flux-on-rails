@@ -345,6 +345,9 @@ module.exports = yeoman.generators.Base.extend({
         this.say.info('Creating gemset...');
         this.shellExec('rvm gemset create ' + this.name);
 
+        this.say.info('Installing `bundler` gem...');
+        this.rvmExec('gem install bundler --quiet');
+
         this.say.info('Installing `rails-api` gem...');
         this.rvmExec('gem install rails-api --quiet');
       }.bind(this),
