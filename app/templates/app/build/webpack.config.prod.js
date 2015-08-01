@@ -46,11 +46,11 @@ export default {
       minChunks: Infinity
     }),
     new webpack.DefinePlugin({
-      __CLIENT__   : true,
-      __SERVER__   : false,
-      __DEV__      : false,
-      __DEVTOOLS__ : false,
-      'process.env': {
+      '__CLIENT__'  : true,
+      '__SERVER__'  : false,
+      '__DEV__'     : false,
+      '__DEVTOOLS__': false,
+      'process.env' : {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
