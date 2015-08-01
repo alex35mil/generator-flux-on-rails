@@ -157,7 +157,7 @@ gulp.task('watch', () => {
 
 gulp.task('lint', done => {
 
-  eslint.execute('--ext .js,.jsx ./');
+  eslint.execute('--ext .js,.jsx .');
   done();
 
 });
