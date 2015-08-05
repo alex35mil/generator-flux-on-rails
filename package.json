@@ -1,6 +1,6 @@
 {
   "name": "generator-flux-on-rails",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Scaffolder of isomorphic/universal Flux app, backed by Rails API",
   "author": {
     "name": "Alex Fedoseev",
