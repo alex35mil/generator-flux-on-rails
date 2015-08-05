@@ -100,7 +100,7 @@ export default async (req, res, next, params) => {
       locals.data   = serialize(state);
 
       const layout = `${process.cwd()}/app/bundles/${bundle}/layouts/Layout.jade`;
-      const html   = Jade.compileFile(layout, { pretty: false })(locals);
+      const html   = jade.compileFile(layout, { pretty: false })(locals);
 
       res.send(html);
 
