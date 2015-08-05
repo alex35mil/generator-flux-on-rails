@@ -201,6 +201,7 @@ Special thanks to those who'll correct the grammar issues in this README.
 
 ## TODO
 
+* **[Flux]** Add tests
 * **[Flux]** Remove `/public` stuff out of repo + symlink it to shared folder on production
 * **[Flux]** Improve error handling
 * **[Flux]** Add `immutable.js`
