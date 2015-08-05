@@ -6,7 +6,8 @@ import { applyMiddleware }  from 'redux';
 import { createStore }      from 'redux';
 import { Provider }         from 'react-redux';
 import middleware           from 'redux-thunk';
-import Jade                 from 'jade';
+import serialize            from 'serialize-javascript';
+import jade                 from 'jade';
 
 import Auth                 from 'app/libs/Auth';
 import populateState        from 'app/libs/populateState';
@@ -95,8 +96,8 @@ export default async (req, res, next, params) => {
 
       const chunks = __DEV__ ? {} : require('public/assets/chunk-manifest.json');
 
-      locals.chunks = JSON.stringify(chunks);
-      locals.data   = JSON.stringify(state);
+      locals.chunks = serialize(chunks);
+      locals.data   = serialize(state);
 
       const layout = `${process.cwd()}/app/bundles/${bundle}/layouts/Layout.jade`;
       const html   = Jade.compileFile(layout, { pretty: false })(locals);

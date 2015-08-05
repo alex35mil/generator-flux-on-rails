@@ -33,7 +33,8 @@ module.exports = yeoman.generators.Base.extend({
       'react-redux',
       'react-router@1.0.0-beta3',
       'redux@1.0.0-rc',
-      'redux-thunk'
+      'redux-thunk',
+      'serialize-javascript'
     ];
 
     this.npmDevDependencies = [
