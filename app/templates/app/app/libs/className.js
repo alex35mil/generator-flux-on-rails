@@ -55,7 +55,7 @@ export default {
     if (Array.isArray(classNames)) {
       classNames.forEach(className => cb(className));
     } else {
-      cb(classNames);
+      return cb(classNames);
     }
 
   }

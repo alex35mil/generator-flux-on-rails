@@ -1,7 +1,7 @@
 import cookie   from 'cookie';
 
 
-export default (context) => {
+export default context => {
 
   if (process.browser) {
 

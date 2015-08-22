@@ -1,4 +1,4 @@
-let RequestError = function(status, message) {
+const RequestError = function(status, message) {
   this.status  = status;
   this.message = message || null;
 };

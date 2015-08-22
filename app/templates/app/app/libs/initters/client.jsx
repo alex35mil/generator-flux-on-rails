@@ -13,7 +13,7 @@ import setTitle             from 'app/libs/setPageTitle';
 import analytics            from 'app/libs/analytics';
 
 
-export default (params) => {
+export default params => {
 
   const reducer   = combineReducers(params.reducers);
   const store     = applyMiddleware(middleware)(createStore)(reducer, window.__DATA__);

@@ -14,9 +14,9 @@
  *
  */
 
-export default (props) => {
+export default props => {
 
-  let meta = {};
+  const meta = {};
 
   const { state, route, /* location, params, */ appHost, fullPath, cssAsset, facebookAppId } = props;
 

@@ -8,7 +8,7 @@ const _public = './public';
 const _assets = `${_app}/assets`;
 
 
-export default (isDevBuild) => {
+export default isDevBuild => {
 
   return {
 

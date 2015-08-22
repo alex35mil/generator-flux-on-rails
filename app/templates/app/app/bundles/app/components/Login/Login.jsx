@@ -102,11 +102,11 @@ export default class Login extends React.Component {
 
     if (isSubmit && !this._wasSubmitted) this._wasSubmitted = true;
 
-    let attributes = [];
+    const attributes = [];
 
     if (isSubmit) {
       e.preventDefault();
-      for (let attribute in rules) {
+      for (const attribute in rules) {
         if (rules.hasOwnProperty(attribute)) {
           attributes.push({
             key  : attribute,

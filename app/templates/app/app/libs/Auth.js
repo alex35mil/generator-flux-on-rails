@@ -8,14 +8,14 @@ export default class Auth {
 
     this.cookie = cookies(context);
 
-    this.setCookieParams = (months) => {
+    this.setCookieParams = months => {
 
-      const monthsFromNow = (n) => {
-        let now = new Date();
-        return (new Date(now.setMonth(now.getMonth() + n)));
+      const monthsFromNow = quantity => {
+        const now = new Date();
+        return (new Date(now.setMonth(now.getMonth() + quantity)));
       };
 
-      let params = {};
+      const params = {};
 
       params.httpOnly = false;
 
@@ -46,7 +46,7 @@ export default class Auth {
     this.cookie.set(config.loginCookie, 'bye-bye', this.setCookieParams(-1));
     this.cookie.set(config.tokenCookie, 'bye-bye', this.setCookieParams(-1));
 
-    if (cb) cb();
+    if (cb) return cb();
 
   }
 

@@ -1,6 +1,6 @@
-export default (response) => {
+export default response => {
 
-  let resType = response.status / 100 | 0; // eslint-disable-line no-bitwise
+  const resType = response.status / 100 | 0; // eslint-disable-line no-bitwise
 
   response.info           = 1 === resType;
   response.ok             = 2 === resType;

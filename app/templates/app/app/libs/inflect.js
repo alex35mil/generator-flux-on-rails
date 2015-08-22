@@ -1,26 +1,21 @@
-export default (amount, words) => {
+export default (quantity, words) => {
 
-  let inflection;
+  const quantityMod = quantity % 100;
 
-  let _amount = amount % 100;
+  if (quantityMod >= 11 && quantityMod <= 19) {
 
-  if (_amount >= 11 && _amount <= 19) {
-
-    inflection = words[2];
+    return words[2];
 
   } else {
 
-    const i = _amount % 10;
-
-    switch (i) {
-      case (1): inflection = words[0]; break;
+    switch (quantityMod % 10) {
+      case (1): return words[0];
       case (2):
       case (3):
-      case (4): inflection = words[1]; break;
-      default:  inflection = words[2];
+      case (4): return words[1];
+      default:  return words[2];
     }
-  }
 
-  return inflection;
+  }
 
 };

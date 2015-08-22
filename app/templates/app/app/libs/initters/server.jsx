@@ -52,7 +52,7 @@ export default async (req, res, next, params) => {
   Router.run(routes, location, async (error, initialState, transition) => {
 
     if (error) {
-      let err = new Error();
+      const err = new Error();
       err.status = error.status || 500;
       return next(err);
     }
@@ -73,7 +73,7 @@ export default async (req, res, next, params) => {
 
       const state = store.getState();
 
-      let { bundle, locals, facebookAppId } = params;
+      const { bundle, locals, facebookAppId } = params;
 
       locals.head = React.renderToStaticMarkup(
         React.createElement(params.Head, {

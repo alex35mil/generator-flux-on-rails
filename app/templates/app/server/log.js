@@ -4,7 +4,7 @@ import fs       from 'fs';
 export default (app, env, bundle) => {
 
   if (env === 'production') {
-    let logStream = fs.createWriteStream(`${process.cwd()}/log/production.${bundle}.log`, { flags: 'a' });
+    const logStream = fs.createWriteStream(`${process.cwd()}/log/production.${bundle}.log`, { flags: 'a' });
     app.use(logger('combined', { stream: logStream }));
   } else {
     app.use(logger('dev'));

@@ -15,7 +15,8 @@
   "scripts": {
     "start": "gulp start:dev",
     "prod": "gulp start:prod",
-    "build": "gulp"
+    "build": "gulp",
+    "test": "NODE_PATH=. mocha --compilers js:babel/register --reporter nyan --recursive app/**/*.spec.jsx"
   },
   "dependencies": {},
   "devDependencies": {}

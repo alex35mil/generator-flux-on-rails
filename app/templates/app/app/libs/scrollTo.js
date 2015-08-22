@@ -8,7 +8,7 @@ const scrollTo = (element, params = {}) => {
     node = element;
   }
 
-  let root = document.body.scrollTop ? document.body : document.documentElement;
+  const root = document.body.scrollTop ? document.body : document.documentElement;
 
   const tick       = 10;
   const duration   = params.duration || 200;
@@ -33,7 +33,7 @@ const scrollTo = (element, params = {}) => {
       } else {
         root.scrollTop -= padding;
       }
-      if (cb && cb === 'function') cb();
+      if (cb && cb === 'function') return cb();
       return;
     }
     scrollTo(element, {

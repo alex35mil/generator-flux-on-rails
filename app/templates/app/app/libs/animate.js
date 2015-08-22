@@ -11,7 +11,7 @@ export default (element, animation, cb) => {
 
   /* Detect events */
 
-  let endEvents = [];
+  const endEvents = [];
 
   const EVENTS_MAP = {
 
@@ -33,8 +33,8 @@ export default (element, animation, cb) => {
 
   };
 
-  let testEl = document.createElement('div');
-  let style  = testEl.style;
+  const testEl = document.createElement('div');
+  const style  = testEl.style;
 
   if (!('AnimationEvent' in window)) {
     delete EVENTS_MAP.animationEndEvents.animation;
@@ -44,10 +44,10 @@ export default (element, animation, cb) => {
     delete EVENTS_MAP.transitionEndEvents.transition;
   }
 
-  for (let baseEventName in EVENTS_MAP) {
+  for (const baseEventName in EVENTS_MAP) {
     if (EVENTS_MAP.hasOwnProperty(baseEventName)) {
-      let baseEvents = EVENTS_MAP[baseEventName];
-      for (let styleName in baseEvents) {
+      const baseEvents = EVENTS_MAP[baseEventName];
+      for (const styleName in baseEvents) {
         if (baseEvents.hasOwnProperty(styleName) && styleName in style) {
           endEvents.push(baseEvents[styleName]);
           break;
@@ -67,7 +67,7 @@ export default (element, animation, cb) => {
         return;
       }
 
-      endEvents.forEach((endEvent) => {
+      endEvents.forEach(endEvent => {
         target.addEventListener(endEvent, eventListener, false);
       });
 
@@ -78,7 +78,7 @@ export default (element, animation, cb) => {
 
       if (endEvents.length === 0) return;
 
-      endEvents.forEach((endEvent) => {
+      endEvents.forEach(endEvent => {
         target.removeEventListener(endEvent, eventListener, false);
       });
 
@@ -91,11 +91,11 @@ export default (element, animation, cb) => {
 
   const classNames = [animation, 'animated'];
 
-  const endListener = (e) => {
+  const endListener = e => {
     if (e && e.target !== node) return;
     eventHandlers.removeEndEventListener(node, endListener);
     className.remove(node, classNames);
-    if (cb) cb();
+    if (cb) return cb();
   }
 
   className.remove(node, classNames);
