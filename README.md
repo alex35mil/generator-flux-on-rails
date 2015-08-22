@@ -203,9 +203,11 @@ Special thanks to those who'll correct the grammar issues in this README.
 
 * **[Flux]** Add tests
 * **[Flux]** Remove `/public` stuff out of repo + symlink it to shared folder on production
-* **[Flux]** Improve error handling
 * **[Flux]** Add `immutable.js`
+* **[Flux]** Fix login form example (move its state from local state to global store)
+* **[Flux]** Switch to `babel-node` in development & production envs
 * **[Flux]** Add `redux-devtools`
+* **[Flux]** Improve error handling
 * ~~**[Flux]** Rewrite `meta` generator: class -> function~~
 * **[Flux]** Add notifications from webpack server
 * **[Flux]** Add server-side retina detection
