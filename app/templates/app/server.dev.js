@@ -1,9 +1,6 @@
 /* eslint no-var: 0, no-console: 0 */
 
-require('babel/register')({
-  extensions: ['.js', '.jsx'],
-  stage     : 0
-});
+require('babel/register')();
 
 var webpack          = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');

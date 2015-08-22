@@ -79,7 +79,7 @@ export default {
   module: {
     noParse: /\.min\.js$/,
     loaders: [
-      { test  : /\.jsx?$/, loader: 'babel?stage=0',  exclude: /node_modules/ },
+      { test  : /\.jsx?$/, loader: 'babel',  exclude: /node_modules/ },
       {
         test  : /\.styl$/,
         loader: Extract.extract('style', 'css!autoprefixer?{browsers:["last 2 version"], cascade:false}!stylus')

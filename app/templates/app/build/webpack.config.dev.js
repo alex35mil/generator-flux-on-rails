@@ -61,7 +61,7 @@ export default {
   module: {
     noParse: /\.min\.js$/,
     loaders: [
-      { test  : /\.jsx?$/, loaders: ['react-hot', 'babel?stage=0'],  exclude: /node_modules/ },
+      { test  : /\.jsx?$/, loaders: ['react-hot', 'babel'],  exclude: /node_modules/ },
       {
         test  : /\.styl$/,
         loader: 'style!css!autoprefixer?{browsers:["last 2 version"], cascade:false}!stylus'
