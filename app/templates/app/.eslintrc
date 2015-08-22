@@ -3,6 +3,7 @@ parser: babel-eslint
 
 
 plugins:
+  - babel
   - react
 
 
@@ -48,8 +49,20 @@ ecmaFeatures:
 rules:
 
   ### ECMAScript 6
+  arrow-parens: 0
+  babel/arrow-parens: [1, as-needed]
+  arrow-spacing: [1, { before: true, after: true }]
+  constructor-super: 2
+  generator-star-spacing: [1, before]
+  no-class-assign: 2
+  no-const-assign: 2
+  no-this-before-super: 2
   no-var: 2
-  generator-star-spacing: [2, before]
+  object-shorthand: [1, methods]
+  prefer-const: 1
+  prefer-spread: 1
+  prefer-reflect: 0
+  require-yield: 1
 
   ### React
   react/display-name: 0
@@ -75,6 +88,7 @@ rules:
   react/wrap-multilines: 2
 
   ### Node.js
+  callback-return: [2, [callback, cb, next]]
   handle-callback-err: [2, ^(err|error)$]
   no-mixed-requires: [1, false]
   no-new-require: 2
@@ -132,7 +146,9 @@ rules:
   no-extra-bind: 1
   no-fallthrough: 2
   no-floating-decimal: 2
+  no-implicit-coercion: [1, { boolean: false, number: true, string: true }]
   no-implied-eval: 2
+  no-invalid-this: 0
   no-iterator: 1
   no-labels: 0
   no-lone-blocks: 0
@@ -154,6 +170,7 @@ rules:
   no-sequences: 2
   no-throw-literal: 2
   no-unused-expressions: 2
+  no-useless-call: 1
   no-void: 2
   no-warning-comments: 0
   no-with: 2
@@ -164,6 +181,7 @@ rules:
   strict: [2, global]
 
   ### Variables
+  init-declarations: 0
   no-catch-shadow: 1
   no-delete-var: 2
   no-label-var: 2
@@ -185,6 +203,7 @@ rules:
   eol-last: 1
   func-names: 0
   func-style: 0
+  id-length: [1, { min: 2, max: 40, exceptions: [e, i] }]
   key-spacing: [0, { align: colon, beforeColon: false, afterColon: true }]      # Should be 1. Eslint bug with `align: colon`.
   max-nested-callbacks: [2, 3]
   new-cap: 1

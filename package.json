@@ -38,5 +38,10 @@
     "yeoman-generator": "^0.18.9",
     "yosay": "^1.0.2"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-eslint": "^4.0.10",
+    "eslint": "^1.2.1",
+    "eslint-plugin-babel": "^2.1.1",
+    "eslint-plugin-react": "^3.2.3"
+  }
 }
