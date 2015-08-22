@@ -32,7 +32,7 @@ module.exports = yeoman.generators.Base.extend({
       'react',
       'react-redux',
       'react-router@1.0.0-beta3',
-      'redux@1.0.0-rc',
+      'redux',
       'redux-thunk',
       'serialize-javascript'
     ];
@@ -46,6 +46,7 @@ module.exports = yeoman.generators.Base.extend({
       'css-loader',
       'del',
       'eslint',
+      'eslint-plugin-babel',
       'eslint-plugin-react',
       'extract-text-webpack-plugin',
       'gulp',
@@ -61,7 +62,12 @@ module.exports = yeoman.generators.Base.extend({
       'stylus-loader',
       'webpack',
       'webpack-dev-server',
-      'webpack-manifest-plugin'
+      'webpack-manifest-plugin',
+
+      'chai',
+      'jsdom',
+      'mocha',
+      'sinon'
     ];
 
     this.say = {
@@ -298,6 +304,7 @@ module.exports = yeoman.generators.Base.extend({
         this.render('app/config/_server.js', 'config/server.js', { name: this.name });
         this.copy('app/config/server.app.js', 'config/', 'config/server.app.js');
         this.copy('app/gulpfile.babel.js', '.', 'gulpfile.babel.js');
+        this.copy('app/.babelrc', '.', '.babelrc');
         this.copy('app/.eslintrc', '.', '.eslintrc');
         this.copy('app/.eslintignore', '.', '.eslintignore');
         this.copy('app/.editorconfig', '.', '.editorconfig');
