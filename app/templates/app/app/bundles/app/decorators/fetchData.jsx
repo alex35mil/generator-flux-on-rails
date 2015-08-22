@@ -2,7 +2,7 @@ import React                  from 'react';
 import { PropTypes as Type }  from 'react';
 
 
-export default (fetch) => {
+export default fetch => {
 
   return DecoratedComponent => (
 
@@ -12,6 +12,7 @@ export default (fetch) => {
 
       static fetchData = fetch
 
+      static DecoratedComponent = DecoratedComponent
 
       static propTypes = {
 
