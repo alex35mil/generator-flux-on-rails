@@ -8,13 +8,13 @@ import Logout     from '../components/Logout/Logout';
 import NotFound   from '../components/NotFound/NotFound';
 
 
-export default (context) => (
+export default context => (
 
   <Route name="app" component={App}>
 
     <Route name="dummy"       path="/"        component={Dummy} />
 
-    <Route name="login"       path="/login"   component={Login}   context={context}   onEnter={Login.DecoratedComponent.checkAuth} />
+    <Route name="login"       path="/login"   component={Login}   context={context}   onEnter={Login.WrappedComponent.checkAuth} />
     <Route name="logout"      path="/logout"  component={Logout} />
 
     <Route name="not-found"   path="*"        component={NotFound} />
