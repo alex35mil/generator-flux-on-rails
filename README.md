@@ -2,6 +2,10 @@
 
 Scaffolder of isomorphic/universal Flux app, backed by Rails API.
 
+[![npm version](https://img.shields.io/npm/v/generator-flux-on-rails.svg?style=flat-square)](https://www.npmjs.com/package/generator-flux-on-rails)
+[![build status](https://img.shields.io/travis/alexfedoseev/generator-flux-on-rails/master.svg?style=flat-square)](https://travis-ci.org/alexfedoseev/generator-flux-on-rails)
+[![dependencies status](https://img.shields.io/gemnasium/alexfedoseev/generator-flux-on-rails.svg?style=flat-square)](https://gemnasium.com/alexfedoseev/generator-flux-on-rails) 
+
 [**LIVE DEMO APP**](http://isomorphic-comments.alexfedoseev.com)  |  App sources: [Flux App](https://github.com/alexfedoseev/isomorphic-comments-app) & [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
 
 
