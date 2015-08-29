@@ -129,66 +129,95 @@ module.exports = yeoman.generators.Base.extend({
 
   appPrompts: function() {
 
-    var done = this.async();
-
     this.log(yosay(
       'Welcome to the marvelous ' + chalk.red('Flux-on-Rails') + ' generator!'
     ));
 
-    var prompts = [
-      {
-        type   : 'input',
-        name   : 'name',
-        message: 'Enter app name:',
-        default: shift.param(this.options.argv.original[0]) || null
-      },
-      {
-        type   : 'checkbox',
-        name   : 'parts',
-        message: 'Choose parts to install:',
-        choices: [
-          {
-            name   : 'Node App',
-            value  : 'app',
-            checked: true
-          },
-          {
-            name   : 'Rails API',
-            value  : 'api',
-            checked: true
-          }
-        ]
-      },
-      {
-        type   : 'confirm',
-        name   : 'configRepo',
-        message: 'Configure remote repo on Github / Bitbucket?',
-        default: true
+    var done = this.async();
+
+    var defaultName = shift.param(this.options.argv.original[0]) || null;
+    var skipPrompts = this.options.skipPrompts;
+
+    if (skipPrompts) {
+
+      if (!defaultName) {
+        this.env.error(
+          chalk.red('NoNameError: Sorry, bro, no way.')
+        );
       }
 
-    ];
-
-    this.prompt(prompts, function (props) {
-
-      function installPart(part) {
-        return props.parts.indexOf(part) !== -1;
-      }
-
-      this.name        = shift.param(props.name);
+      this.name        = defaultName;
       this.appName     = this.name + '-app';
       this.apiName     = this.name + '-api';
-      this.installApp  = installPart('app');
-      this.installApi  = installPart('api');
+      this.installApp  = true;
+      this.installApi  = true;
 
       this.root        = path.join(shell.pwd(), this.name);
       this.rubyVersion = shell.env['RUBY_VERSION'];
       this.rvmString   = 'rvm ' + this.rubyVersion + '@' + this.name + ' do ';
 
-      this.configRepo  = props.configRepo;
+      this.configRepo  = false;
 
       done();
 
-    }.bind(this));
+    } else {
+
+      var prompts = [
+        {
+          type   : 'input',
+          name   : 'name',
+          message: 'Enter app name:',
+          default: shift.param(this.options.argv.original[0]) || null
+        },
+        {
+          type   : 'checkbox',
+          name   : 'parts',
+          message: 'Choose parts to install:',
+          choices: [
+            {
+              name   : 'Node App',
+              value  : 'app',
+              checked: true
+            },
+            {
+              name   : 'Rails API',
+              value  : 'api',
+              checked: true
+            }
+          ]
+        },
+        {
+          type   : 'confirm',
+          name   : 'configRepo',
+          message: 'Configure remote repo on Github / Bitbucket?',
+          default: true
+        }
+
+      ];
+
+      this.prompt(prompts, function (props) {
+
+        function installPart(part) {
+          return props.parts.indexOf(part) !== -1;
+        }
+
+        this.name        = shift.param(props.name);
+        this.appName     = this.name + '-app';
+        this.apiName     = this.name + '-api';
+        this.installApp  = installPart('app');
+        this.installApi  = installPart('api');
+
+        this.root        = path.join(shell.pwd(), this.name);
+        this.rubyVersion = shell.env['RUBY_VERSION'];
+        this.rvmString   = 'rvm ' + this.rubyVersion + '@' + this.name + ' do ';
+
+        this.configRepo  = props.configRepo;
+
+        done();
+
+      }.bind(this));
+
+    }
 
   },
 
