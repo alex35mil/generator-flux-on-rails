@@ -1,0 +1,28 @@
+language: ruby
+
+rvm:
+  - 2.2.2
+
+services:
+  - postgresql
+
+install:
+  - nvm install stable
+  - nvm use stable
+  - npm install -g npm
+  - npm install -g yo
+  - npm install
+
+before_script:
+  - git config --global user.email "travis@travis.ci"
+  - git config --global user.name "Travis CI"
+
+script:
+  - npm link
+  - cd ..
+  - yo flux-on-rails travis-test --skip-prompts --no-insight
+  - cd travis-test/travis-test-api
+  - rvm ruby-2.2.2@travis-test do bundle exec rake db:migrate
+  - rvm ruby-2.2.2@travis-test do bundle exec rspec --color
+  - cd ../travis-test-app
+  - npm run build
