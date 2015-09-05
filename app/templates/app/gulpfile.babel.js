@@ -29,15 +29,29 @@ const webpackCallback = config.webpack.cb;
 gulp.task('default', [startTask]);
 
 gulp.task(prodBuildTask, done => {
-  run(['clean', 'lint'], ['bundle', 'images', 'copy'], done);
+  run(
+    ['clean', 'lint'],
+    ['bundle', 'images', 'copy'],
+    done
+  );
 });
 
 gulp.task(startDevTask, done => {
-  run(['clean', 'lint'], ['bundle', 'images', 'copy'], ['server', 'watch'], done);
+  run(
+    ['clean', 'lint'],
+    ['bundle', 'images', 'copy'],
+    ['server', 'watch'],
+    done
+  );
 });
 
 gulp.task(startProdTask, done => {
-  run(['clean', 'lint'], ['bundle', 'images', 'copy'], ['server', 'watch'], done);
+  run(
+    ['clean', 'lint'],
+    ['bundle', 'images', 'copy'],
+    ['server', 'watch'],
+    done
+  );
 });
 
 
@@ -145,7 +159,8 @@ gulp.task('copy', done => {
 
 gulp.task('watch', () => {
 
-  const watchItems = config.watch.files.map(file => config.watch.root + file);
+  const { files, root } = config.watch;
+  const watchItems = files.map(file => root + file);
 
   gulp.watch(watchItems, ['copy']);
 
@@ -168,8 +183,9 @@ gulp.task('lint', done => {
 
 gulp.task('clean', done => {
 
-  const items = config.clean.map(dir => dir + '/**/*');
+  const { clean } = config;
+  const items = clean.map(dir => dir + '/**/*');
 
-  del(items, done);
+  del(items).then(done);
 
 });
