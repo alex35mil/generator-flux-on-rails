@@ -67,6 +67,7 @@ module.exports = yeoman.generators.Base.extend({
       'chai',
       'jsdom',
       'mocha',
+      'mocha-jsdom',
       'sinon'
     ];
 
