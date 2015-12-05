@@ -8,6 +8,9 @@ Scaffolder of isomorphic/universal Flux app, backed by Rails API.
 
 [**LIVE DEMO APP**](http://isomorphic-comments.alexfedoseev.com)  |  App sources: [Flux App](https://github.com/alexfedoseev/isomorphic-comments-app) & [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
 
+> **1.0.0 is comming soon**  
+> Current version of generator is broken. Updated version will be published soon.  
+> CSS Modules, Isomorphic.js, improved development flow will be included. Stay tuned!
 
 What you'll get with just a few lines in console.
 
