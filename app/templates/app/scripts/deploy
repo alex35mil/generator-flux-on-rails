@@ -1,0 +1,5 @@
+#!/bin/sh
+
+mina \
+  -f ./configs/deploy/deploy.rb \
+  ${1:-deploy}

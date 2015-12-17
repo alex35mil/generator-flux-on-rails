@@ -1,4 +1,7 @@
-import auth   from './auth';
-import dummy  from './dummy';
+import authReducer    from './authReducer';
+import dummiesReducer from './dummiesReducer';
 
-export default { auth, dummy };
+export default {
+  $authStore   : authReducer,
+  $dummiesStore: dummiesReducer,
+};

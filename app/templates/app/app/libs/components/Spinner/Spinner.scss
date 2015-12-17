@@ -1,0 +1,71 @@
+@import "app/assets/styles/imports/_index";
+
+@keyframes clockwise {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes donut-rotate {
+  0% {
+    transform: rotate(0);
+  }
+  50% {
+    transform: rotate(-140deg);
+  }
+  100% {
+    transform: rotate(0);
+  }
+}
+
+.wrapper {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .hoopWrapper {
+    // width: $spinner-size;
+    // height: $spinner-size;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    .hoopIcon {
+      // width: $spinner-size;
+      // height: $spinner-size;
+      animation: clockwise 500ms linear infinite;
+
+      .hoopCut {
+        // width: ($spinner-size / 2);
+        // height: $spinner-size;
+        position: relative;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+
+        .hoopDonut {
+          // width: $spinner-size;
+          // height: $spinner-size;
+          // border: 2px solid $blue;
+          position: absolute;
+          box-sizing: border-box;
+          margin: 0;
+          top: 0;
+          left: 0;
+          // border-radius: 50%;
+          // border-left-color: transparent;
+          // border-bottom-color: transparent;
+          background: none;
+          animation: donut-rotate 1000ms cubic-bezier(.4, 0, .22, 1) infinite;
+        }
+      }
+    }
+  }
+}

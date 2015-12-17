@@ -1,42 +1,37 @@
-import React                from 'react';
-import Router               from 'react-router';
-import BrowserHistory       from 'react-router/lib/BrowserHistory';
-import { combineReducers }  from 'redux';
-import { applyMiddleware }  from 'redux';
-import { createStore }      from 'redux';
-import { Provider }         from 'react-redux';
-import middleware           from 'redux-thunk';
-import NProgress            from 'nprogress';
+import React         from 'react';
+import ReactDOM      from 'react-dom';
+import Router        from 'react-router';
+import createHistory from 'history/lib/createBrowserHistory';
+import { Provider }  from 'react-redux';
+import transit       from 'transit-immutable-js';
+import NProgress     from 'nprogress';
 
-import Auth                 from 'app/libs/Auth';
-import setTitle             from 'app/libs/setPageTitle';
-import analytics            from 'app/libs/analytics';
+import initStore from 'app/libs/initters/store';
+import Auth      from 'app/libs/Auth';
+import setTitle  from 'app/libs/setPageTitle';
+import analytics from 'app/libs/analytics';
 
 
 export default params => {
 
-  const reducer   = combineReducers(params.reducers);
-  const store     = applyMiddleware(middleware)(createStore)(reducer, window.__DATA__);
-
-  const history   = new BrowserHistory();
-
-  const authAgent = new Auth(document, params.cookieDomain);
-
-  const routes    = params.routes({ store });
-
+  const { reducers } = params;
+  const initialState = transit.fromJSON(window.__DATA__);
+  const store        = initStore({ reducers, initialState });
+  const routes       = params.routes(store);
+  const history      = createHistory();
+  const authAgent    = new Auth(document, params.cookieDomain);
 
   if (params.googleAnalyticsId) {
     analytics.init(params.googleAnalyticsId);
   }
 
+  let isInitialRender = true;
 
-  let initialRender = true;
-
-  const appComponent = (Component, props) => {
+  const elementCreator = (Component, props) => {
 
     NProgress.configure({
       showSpinner: false,
-      trickle    : true
+      trickle    : true,
     });
 
     if (props.route.name === 'app') {
@@ -46,13 +41,13 @@ export default params => {
 
     return (
       <Component
-          store={store}
-          loader={NProgress}
-          authAgent={authAgent}
-          initialRender={initialRender}
-          setTitle={setTitle}
-          meta={params.meta}
-          {...props}
+        store={store}
+        loadingProgress={NProgress}
+        authAgent={authAgent}
+        isInitialRender={isInitialRender}
+        setTitle={setTitle}
+        getMeta={params.getMeta}
+        {...props}
       />
     );
 
@@ -60,12 +55,16 @@ export default params => {
 
   const AppContainer = (
     <Provider store={store}>
-      {() => <Router history={history} children={routes} createElement={appComponent} />}
+      <Router
+        history={history}
+        children={routes}
+        createElement={elementCreator}
+      />
     </Provider>
   );
 
   const appDOMNode = document.getElementById('app');
 
-  React.render(AppContainer, appDOMNode, () => initialRender = false);
+  ReactDOM.render(AppContainer, appDOMNode, () => isInitialRender = false);
 
 }

@@ -1,7 +1,14 @@
 export default {
 
   init(analyticsId) {
-    this._injectAnalytics(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    const gaArgs = [
+      window,
+      document,
+      'script',
+      '//www.google-analytics.com/analytics.js',
+      'ga',
+    ];
+    this._injectAnalytics(...gaArgs);
     ga('create', analyticsId, 'auto');
     ga('require', 'displayfeatures');
   },

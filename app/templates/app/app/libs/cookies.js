@@ -1,4 +1,4 @@
-import cookie   from 'cookie';
+import cookie from 'cookie';
 
 
 export default context => {
@@ -9,9 +9,10 @@ export default context => {
       get(name) {
         return cookie.parse(context.cookie)[name];
       },
+
       set(name, value, options) {
         context.cookie = cookie.serialize(name, value, options);
-      }
+      },
     }
 
   } else {
@@ -20,9 +21,10 @@ export default context => {
       get(name) {
         return context.cookies[name];
       },
+
       set(name, value, options) {
         context.res.cookie(name, value, options);
-      }
+      },
     }
 
   }

@@ -3,10 +3,11 @@ import className  from './className';
 
 export default (element, animation, cb) => {
 
-
   /* Get element */
 
-  const node = typeof element === 'string' ? document.getElementById(element) : element;
+  const node = (
+    typeof element === 'string' ? document.getElementById(element) : element
+  );
 
 
   /* Detect events */
@@ -20,7 +21,7 @@ export default (element, animation, cb) => {
       'WebkitTransition': 'webkitTransitionEnd',
       'MozTransition'   : 'mozTransitionEnd',
       'OTransition'     : 'oTransitionEnd',
-      'msTransition'    : 'MSTransitionEnd'
+      'msTransition'    : 'MSTransitionEnd',
     },
 
     animationEndEvents: {
@@ -28,8 +29,8 @@ export default (element, animation, cb) => {
       'WebkitAnimation': 'webkitAnimationEnd',
       'MozAnimation'   : 'mozAnimationEnd',
       'OAnimation'     : 'oAnimationEnd',
-      'msAnimation'    : 'MSAnimationEnd'
-    }
+      'msAnimation'    : 'MSAnimationEnd',
+    },
 
   };
 
@@ -56,7 +57,8 @@ export default (element, animation, cb) => {
     }
   }
 
-  /* Events handlers */
+
+  /* Define events handlers */
 
   const eventHandlers = {
 
@@ -73,7 +75,6 @@ export default (element, animation, cb) => {
 
     },
 
-
     removeEndEventListener(target, eventListener) {
 
       if (endEvents.length === 0) return;
@@ -82,7 +83,7 @@ export default (element, animation, cb) => {
         target.removeEventListener(endEvent, eventListener, false);
       });
 
-    }
+    },
 
   };
 

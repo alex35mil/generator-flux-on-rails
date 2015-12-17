@@ -1,24 +1,31 @@
-import React      from 'react';
-import { Route }  from 'react-router';
+import React     from 'react';
+import { Route } from 'react-router';
 
-import App        from '../layouts/App';
-import Dummy      from '../components/Dummy/DummyContainer';
-import Login      from '../components/Login/LoginContainer';
-import Logout     from '../components/Logout/Logout';
-import NotFound   from '../components/NotFound/NotFound';
+import App      from '../containers/AppContainer';
+import Dummies  from '../containers/DummiesContainer';
+import Login    from '../containers/LoginContainer';
+import Logout   from '../components/Logout/Logout';
+import NotFound from '../components/NotFound/NotFound';
 
 
-export default context => (
+export default store => {
 
-  <Route name="app" component={App}>
+  const loginHooks = {
+    store,
+    onEnter: Login.WrappedComponent.checkAuth,
+  };
 
-    <Route name="dummy"       path="/"        component={Dummy} />
+  return (
+    <Route name="app" component={App}>
 
-    <Route name="login"       path="/login"   component={Login}   context={context}   onEnter={Login.WrappedComponent.checkAuth} />
-    <Route name="logout"      path="/logout"  component={Logout} />
+      <Route name="dummies" path="/" component={Dummies} />
 
-    <Route name="not-found"   path="*"        component={NotFound} />
+      <Route name="login"  path="/login"  component={Login} {...loginHooks} />
+      <Route name="logout" path="/logout" component={Logout} />
 
-  </Route>
+      <Route name="not-found" path="*" component={NotFound} />
 
-);
+    </Route>
+  );
+
+};

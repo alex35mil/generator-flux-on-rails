@@ -1,0 +1,9 @@
+@import "app/assets/styles/imports/_index";
+
+.wrapper {
+  @include button-wrapper;
+}
+
+.button {
+  @include button;
+}

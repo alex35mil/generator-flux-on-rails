@@ -1,0 +1,6 @@
+#!/bin/sh
+
+$(npm bin)/babel \
+  --watch \
+  --out-file ./app/index.js \
+  ./app/index.es6

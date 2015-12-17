@@ -1,0 +1,5 @@
+#!/bin/sh
+
+$(npm bin)/nodemon \
+  --watch $1 \
+  $1

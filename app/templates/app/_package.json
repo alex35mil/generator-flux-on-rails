@@ -2,21 +2,16 @@
   "name": "<%= appName %>",
   "version": "0.0.1",
   "description": "My awesome app",
-  "homepage": "",
-  "author": {
-    "name": "",
-    "email": "",
-    "url": ""
-  },
-  "license": "MIT",
   "private": true,
   "repository":  "<%= repoUrl %>",
-  "main": "server.js",
+  "main": "server.app.js",
   "scripts": {
-    "start": "gulp start:dev",
-    "prod": "gulp start:prod",
-    "build": "gulp",
-    "test": "NODE_PATH=. mocha --compilers js:babel/register --reporter nyan --recursive app/**/*.spec.jsx"
+    "start": "fly",
+    "test": "fly test",
+    "lint": "fly lint",
+    "build": "NODE_ENV=production fly build",
+    "build:try": "NODE_ENV=production fly tryBuild",
+    "deploy": "scripts/deploy"
   },
   "dependencies": {},
   "devDependencies": {}

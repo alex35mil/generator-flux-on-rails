@@ -2,12 +2,17 @@
 
 Scaffolder of isomorphic/universal Flux app, backed by Rails API.
 
+### This is 1.0.0 branch and it's ongoing
+
+Please see this PR for more info:
+
+---
+
 [![npm version](https://img.shields.io/npm/v/generator-flux-on-rails.svg?style=flat-square)](https://www.npmjs.com/package/generator-flux-on-rails)
 [![build status](https://img.shields.io/travis/alexfedoseev/generator-flux-on-rails/master.svg?style=flat-square)](https://travis-ci.org/alexfedoseev/generator-flux-on-rails)
-[![dependencies status](https://img.shields.io/gemnasium/alexfedoseev/generator-flux-on-rails.svg?style=flat-square)](https://gemnasium.com/alexfedoseev/generator-flux-on-rails) 
+[![dependencies status](https://img.shields.io/gemnasium/alexfedoseev/generator-flux-on-rails.svg?style=flat-square)](https://gemnasium.com/alexfedoseev/generator-flux-on-rails)
 
 [**LIVE DEMO APP**](http://isomorphic-comments.alexfedoseev.com)  |  App sources: [Flux App](https://github.com/alexfedoseev/isomorphic-comments-app) & [Rails API](https://github.com/alexfedoseev/isomorphic-comments-api)  
-
 
 What you'll get with just a few lines in console.
 
@@ -17,7 +22,7 @@ What you'll get with just a few lines in console.
 * Multiple bundles ready
 * Simple authentication mechanism
 * `<head>` generation and `<title>` updater
-* Development and production builds (using `webpack` & `gulp`)
+* Development and production builds (using `webpack`, `fly` & custom tools)
 * Hot reloading in development
 * Google Analytics helpers
 * Rails API — up and running
@@ -31,17 +36,21 @@ For further details please follow up this [series of posts @medium](https://medi
 
 #### Flux app
 
-* **React @ 0.13.3**
-* **Redux @ 1.0.0-rc** as Flux implementation
-* **React Router @ 1.0.0-beta3** as... Router
+* **React @ 0.14.x**
+* **Redux @ 3.x.x** as Flux implementation
+* **React Router @ 1.x.x** as... Router
 * **Express @ 4.x** as front-end framework
 * **Jade @ 1.x** as template engine
-* **Stylus** as css preprocessor
-* **Babel** as ES6 -> ES5 transpiler
+* **SASS** as css preprocessor
+* **CSS Modules** as css-life-saver
+* **Immutable.js** as js-life-saver
+* **Babel** as ES Next -> ES5 transpiler
 * **Webpack** as assets bundler
-* **Gulp** as build engine
+* **Fly** as build engine
 * **Eslint** as js linter
 * **Node** as is
+
+& bunch of other stuff...
 
 #### Rails API
 
@@ -206,14 +215,14 @@ Special thanks to those who'll correct the grammar issues in this README.
 ## TODO
 
 * **[Flux]** Add tests
-* **[Flux]** Remove `/public` stuff out of repo + symlink it to shared folder on production
-* **[Flux]** Add `immutable.js`
+* **[Flux]** Fix deploy scripts for Node app:
+  * ~~**[Flux]** remove `/public` folder with generated assets out of repo~~
+  * **[Flux]** symlink it to shared folder on production
+  * **[Flux]** handle rollbacks
+* **[Flux]**
 * **[Flux]** Fix login form example (move its state from local state to global store)
-* **[Flux]** Switch to `babel-node` in development & production envs
 * **[Flux]** Add `redux-devtools`
 * **[Flux]** Improve error handling
-* ~~**[Flux]** Rewrite `meta` generator: class -> function~~
-* **[Flux]** Add notifications from webpack server
 * **[Flux]** Add server-side retina detection
 * **[Flux]** Add I18n
 * **[Flux, Rails]** Switch to JWT authentication
@@ -224,7 +233,7 @@ Special thanks to those who'll correct the grammar issues in this README.
 * [**@mjackson**](https://github.com/mjackson) & [**@ryanflorence**](https://github.com/ryanflorence) for wonderful `react-router`
 * [**@erikras**](https://github.com/erikras) & [**@quangbuule**](https://github.com/quangbuule) for great `redux` examples
 * [**Rails team**](https://github.com/rails) for the best backend framework ever.
-* And all the OS contributors, who made the stuff from `Gemfile` & `project.json`.
+* And all the OSS contributors, who made the stuff from `Gemfile` & `package.json`.
 
 ## License
 

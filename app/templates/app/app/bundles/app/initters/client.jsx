@@ -1,17 +1,15 @@
-import polyfill         from 'babel/polyfill';  // eslint-disable-line no-unused-vars
-
-import initter          from 'app/libs/initters/client';
-import config           from 'config/server.app';
-import routes           from '../routes/routes';
-import reducers         from '../reducers/reducers';
-import meta             from '../layouts/meta';
-import setCookieDomain  from 'app/libs/setCookieDomain';
+import initter         from 'app/libs/initters/client';
+import setCookieDomain from 'app/libs/setCookieDomain';
+import config          from 'configs/server/server.app';
+import routes          from '../routes/routes';
+import reducers        from '../reducers/reducers';
+import getMeta         from '../layouts/head/getMeta';
 
 
 const cookieDomain = setCookieDomain(document.location.hostname);
 
 const { googleAnalyticsId } = config;
 
-const params = { routes, reducers, meta, cookieDomain, googleAnalyticsId };
+const params = { routes, reducers, getMeta, cookieDomain, googleAnalyticsId };
 
 export default initter(params);

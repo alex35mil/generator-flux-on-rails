@@ -1,0 +1,31 @@
+header {
+  width: 100%;
+  margin: 1rem 0;
+  padding: .2rem 0;
+  text-align: center;
+
+  @media #{$mq-phone} {
+    padding: 0;
+  }
+
+  h1 {
+    margin: 0 0 1rem;
+    padding: 0;
+    font-size: 2.1rem;
+    font-weight: 700;
+
+    @media #{$mq-phone} {
+      font-size: 1.7rem;
+    }
+
+    a {
+      padding: .5rem .9rem;
+      border: 0;
+      color: #fff;
+      background-color: $green;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+}

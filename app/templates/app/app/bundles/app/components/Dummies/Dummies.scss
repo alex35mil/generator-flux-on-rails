@@ -1,0 +1,57 @@
+.dummiesSection {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  $image-width: 50px;
+  $bg-color: #fff;
+  .content {
+    display: block;
+    position: relative;
+    margin: 1rem auto;
+    padding: 2rem 3rem;
+    width: $section-width;
+    background-color: $bg-color;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .1);
+  }
+
+  .loggedIn,
+  .loggedOut {
+    position: relative;
+    margin: 0 auto;
+    width: $image-width;
+    height: $image-width;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: .5;
+  }
+  .loggedIn {
+    background-image: url(./images/logged-in.png);
+  }
+  .loggedOut {
+    background-image: url(./images/logged-out.png);
+  }
+
+  .authMessage {
+    display: block;
+    margin-top: 1rem;
+  }
+
+  .authButtonWrapper {
+    display: block;
+    margin-top: 2rem;
+
+    .authButton {
+      @include ghost-button($padding: .5rem 1rem);
+    }
+  }
+
+  .dummyCard {
+    margin: .5rem 0;
+  }
+
+}

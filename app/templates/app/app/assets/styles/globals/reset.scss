@@ -1,0 +1,22 @@
+/* Addition to normalize.css */
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+ul,
+ol,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: none;
+  cursor: pointer;
+  border: 0;
+}

@@ -1,0 +1,7 @@
+// TODO: Add variants
+
+$phone-width : 748px;
+$tablet-width: 1024px;
+
+$mq-phone : "only screen and (max-width: #{$phone-width})";
+$mq-tablet: "only screen and (max-width: #{$tablet-width})";

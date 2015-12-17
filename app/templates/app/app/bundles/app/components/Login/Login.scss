@@ -1,0 +1,62 @@
+.loginSection {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  form {
+    margin: 1rem 0;
+    width: $section-width;
+
+    @media #{$mq-phone} {
+      margin: 0;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      margin-right: 1%;
+      padding: 1rem 1.5rem;
+      border: 0;
+      border-radius: 0;
+      background-color: #fff;
+      box-shadow: 0 0 1px rgba(0, 0, 0, .1);
+
+      &:focus {
+        box-shadow: 0px 0px 5px 0px rgba(#1ea9ff, 0.95);
+      }
+
+      &.error {
+        background-color: #ffd0dd;
+      }
+
+      &.ok {
+        border-bottom: 1px solid $green;
+      }
+
+      @media #{$mq-phone} {
+        margin: 0 0 1%;
+        width: 50%;
+        font-size: .8rem;
+        padding: .5rem 1rem;
+      }
+    }
+
+    .buttonWrapper {
+      @include button-wrapper;
+      width: 100%;
+
+      @media #{$mq-phone} {
+        width: 100%;
+      }
+
+      button {
+        width: 100%;
+        margin: 0;
+        padding: 1rem 1.5rem;
+        border-radius: 0;
+        color: #fff;
+      }
+    }
+  }
+}

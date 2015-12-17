@@ -1,0 +1,15 @@
+$body-bg-color: #eaeaea;
+$body-min-width: 400px;
+$body-max-width: 700px;
+
+$section-width: 230px;
+
+@mixin layout-section {
+  margin: 0 auto;
+  min-width: $body-min-width;
+  max-width: $body-max-width;
+}
+
+$footer-bg-color: #fff;
+$footer-height: 80px;
+$footer-padding: 40px;

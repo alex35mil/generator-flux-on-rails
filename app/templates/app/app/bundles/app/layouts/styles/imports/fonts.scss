@@ -1,0 +1,35 @@
+$base-text-color: rgba(0, 0, 0, .8);
+$base-font-size: 20px;
+$base-font-size-mobile: 20px;
+$base-line-height: 1.4;
+
+$fonts-path: "/fonts/";
+
+/* Google Fonts */
+
+$sans-font: "NotoSans";
+$sans-font-normal: "NotoSans-normal-400";
+
+$base-font-family: $sans-font, Tahoma, Helvetica, Arial, sans-serif;
+
+@mixin base-font {
+  font-family: $base-font-family;
+  font-weight: 400;
+}
+
+
+/* Icon font */
+
+$icon-font: "icomoon";
+$icon-font-file-name: $icon-font;
+$icon-font-path: $fonts-path + $icon-font-file-name;
+
+@mixin icon-font {
+  font-family: $icon-font;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}

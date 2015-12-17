@@ -8,7 +8,9 @@ const scrollTo = (element, params = {}) => {
     node = element;
   }
 
-  const root = document.body.scrollTop ? document.body : document.documentElement;
+  const root = (
+    document.body.scrollTop ? document.body : document.documentElement
+  );
 
   const tick       = 10;
   const duration   = params.duration || 200;
@@ -16,7 +18,11 @@ const scrollTo = (element, params = {}) => {
   const toBottom   = params.toBottom || false;
   const cb         = params.cb || false;
   const side       = toBottom ? 'bottom' : 'top';
-  const to         = node ? (node.getBoundingClientRect()[side] + root.scrollTop) : 0;
+
+  const to = (
+    node ? (node.getBoundingClientRect()[side] + root.scrollTop) : 0
+  );
+
   const difference = to - root.scrollTop;
   const perTick    = difference / duration * tick;
 
@@ -24,7 +30,9 @@ const scrollTo = (element, params = {}) => {
     root.scrollTop += perTick;
     const scrollDone = (
       Math.abs(root.scrollTop - to) < 1 ||
-      (window.pageYOffset < to && (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight
+      (
+        window.pageYOffset < to &&
+        (window.innerHeight + window.pageYOffset) >= document.body.offsetHeight
       )
     );
     if (scrollDone) {
@@ -40,7 +48,7 @@ const scrollTo = (element, params = {}) => {
       padding,
       toBottom,
       cb,
-      duration: duration - tick
+      duration: duration - tick,
     });
   }, tick);
 

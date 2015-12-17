@@ -1,45 +1,47 @@
-import express      from 'express';
-import compressor   from 'compression';
-import parser       from 'body-parser';
-import cookies      from 'cookie-parser';
-import path         from 'path';
+/* eslint no-console: 0 */
 
-import noCache      from './server/noCache';
-import errors       from './server/errors';
-import logger       from './server/log';
+import express    from 'express';
+import compressor from 'compression';
+import parser     from 'body-parser';
+import cookies    from 'cookie-parser';
+import path       from 'path';
+
+import noCacheMiddleware from './middlewares/noCacheMiddleware';
+import errorsMiddleware  from './middlewares/errorsMiddleware';
+import loggerMiddleware  from './middlewares/loggerMiddleware';
 
 
 export default (initter, config) => {
 
-  global.__CLIENT__ = false;
-  global.__SERVER__ = true;
-  global.__DEV__    = config.env !== 'production';
+  const server = express();
 
-  const app = express();
+  const serverEnv = server.get('env');
 
-  const appEnv = app.get('env');
+  loggerMiddleware(server, serverEnv, config.bundle);
 
-  logger(app, appEnv, config.bundle);
+  server.use(compressor());
 
-  app.use(compressor());
+  server.use(parser.json());
+  server.use(parser.urlencoded({ extended: true }));
 
-  app.use(parser.json());
-  app.use(parser.urlencoded({ extended: true }));
+  server.use(cookies());
 
-  app.use(cookies());
+  server.use(express.static(path.join(__dirname, 'public')));
 
-  app.use(express.static(path.join(__dirname, 'public')));
+  server.use('/', noCacheMiddleware, initter);
 
-  app.use('/', noCache, initter);
+  server.set('view engine', 'jade');
+  server.set('views', path.join(__dirname, 'app'));
+  server.use(errorsMiddleware);
 
-  app.set('view engine', 'jade');
-  app.set('views', path.join(__dirname, 'app'));
-  app.use(errors);
+  server.set('port', config.appPort);
 
-  app.set('port', config.appPort);
-
-  app.listen(app.get('port'), function() {
-    console.log(`=> 🚀  Express ${config.bundle} ${config.env} server is running on port ${this.address().port}`);  // eslint-disable-line no-console
+  server.listen(server.get('port'), function() {
+    const { bundle, env } = config;
+    const expressPort = this.address().port;
+    console.log(
+      `=> 🚀  Express ${bundle} ${env} server is running on port ${expressPort}`
+    );
   });
 
 }

@@ -1,0 +1,13 @@
+app/index.es6
+
+test/
+scripts/
+*.log
+*.log*
+.babelrc
+.eslintignore
+.eslintrc
+.gitattributes
+.gitignore
+.npmignore
+.travis.yml

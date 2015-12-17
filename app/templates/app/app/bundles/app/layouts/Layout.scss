@@ -1,0 +1,22 @@
+@import "app/assets/styles/globals/_index";
+@import "app/assets/styles/vendors/_index";
+@import "./styles/globals/_index";
+
+
+body {
+
+  #app {
+    width: 100%;
+
+    #layout {
+      @include layout-section;
+
+      @media #{$mq-phone} {
+        max-width: 100%;
+        min-width: 300px;
+        padding: 0 1rem 1rem;
+      }
+    }
+  }
+
+}

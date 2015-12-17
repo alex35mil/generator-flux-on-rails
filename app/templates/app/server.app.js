@@ -1,18 +1,7 @@
-/* eslint no-var: 0, no-process-env: 0 */
+import 'babel-polyfill';
 
-var babelRegister = require('babel/register');
+import server  from './server';
+import initter from './app/bundles/app/initters/server';
+import config  from './configs/server/server.app';
 
-var isProduction  = process.env.NODE_ENV === 'production';
-
-if (isProduction) {
-  babelRegister();
-} else {
-  babelRegister({
-    sourceMap: 'inline'
-  });
-}
-
-var initter = require('./app/bundles/app/initters/server'),
-    config  = require('./config/server.app');
-
-require('./server')(initter, config);
+server(initter, config);

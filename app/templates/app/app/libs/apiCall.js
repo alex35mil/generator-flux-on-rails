@@ -1,7 +1,8 @@
-import request  from 'axios';
+import request from 'axios';
 
-import config   from 'config/server';
+import config  from 'configs/server/server.base';
 
+// TODO: Refactor
 
 export default params => {
 
@@ -11,7 +12,7 @@ export default params => {
 
   const headers = {
     'Content-Type': 'application/json',
-    'Accept'      : `application/vnd.${config.apiName}.${config.apiVersion}+json`
+    'Accept'      : `application/vnd.${config.apiName}.${config.apiVersion}+json`,
   };
 
   if (params.auth) Object.assign(headers, params.auth);

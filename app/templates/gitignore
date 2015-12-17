@@ -1,4 +1,7 @@
-# Created by https://www.gitignore.io
+# Frontend app
+/build/
+/public/
+/logs/
 
 
 ### Ruby ###

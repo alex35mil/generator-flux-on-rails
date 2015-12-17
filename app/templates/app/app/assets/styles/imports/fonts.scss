@@ -1,0 +1,31 @@
+@mixin font-connect($family, $src, $weight: "normal", $style: "normal", $woff2: false) {
+  font-family: $family;
+  src: url("#{$src}.eot");
+  @if ($woff2) {
+    src:
+      url("#{$src}.eot?#iefix") format("embedded-opentype"),
+      url("#{$src}.woff2") format("woff2"),
+      url("#{$src}.woff") format("woff"),
+      url("#{$src}.ttf") format("truetype"),
+      url("#{$src}.svg?##{$family}") format("svg");
+  } @else {
+    src:
+      url("#{$src}.eot?#iefix") format("embedded-opentype"),
+      url("#{$src}.woff") format("woff"),
+      url("#{$src}.ttf") format("truetype"),
+      url("#{$src}.svg?##{$family}") format("svg");
+  }
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@mixin font-smoothing($active: true) {
+  @if ($active == true) {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}

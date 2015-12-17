@@ -1,0 +1,7 @@
+#!/bin/sh
+
+NODE_PATH=. \
+$(npm bin)/mocha \
+  --compilers js:babel-register \
+  --reporter nyan \
+  --recursive app/**/*.spec.jsx
