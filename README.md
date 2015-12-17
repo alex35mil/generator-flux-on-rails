@@ -4,7 +4,7 @@ Scaffolder of isomorphic/universal Flux app, backed by Rails API.
 
 ### This is 1.0.0 branch and it's ongoing
 
-Please see this PR for more info:
+Please see this PR for more info: [generator-flux-on-rails/pull/6](https://github.com/alexfedoseev/generator-flux-on-rails/pull/6)
 
 ---
 
