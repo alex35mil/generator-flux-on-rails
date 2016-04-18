@@ -1,2 +1,6 @@
 ---
 extends: ./app/templates/app/.eslintrc
+
+rules:
+  no-console: 0
+  no-sync: 0

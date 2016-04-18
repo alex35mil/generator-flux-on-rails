@@ -1,6 +1,6 @@
 #!/bin/sh
 
-$(npm bin)/babel \
+$(npm bin)/webpack \
   --watch \
-  --out-file ./app/index.js \
-  ./app/index.es6
+  ./app/index.es6 \
+  ./app/index.js

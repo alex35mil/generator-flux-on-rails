@@ -1,5 +1,5 @@
 #!/bin/sh
 
-$(npm bin)/babel \
-  --out-file ./app/index.js \
-  ./app/index.es6
+$(npm bin)/webpack \
+  ./app/index.es6 \
+  ./app/index.js
