@@ -91,7 +91,7 @@ export default {
         test  : cfg.scssLoaderTest,
         loader: Extract.extract(
           'style',
-          `css?${cfg.cssLoaderParams({ importLoaders: 2 })}` +
+          `css?${cfg.cssLoaderParams({ importLoaders: 3 })}` +
           `!postcss` +
           `!sass?${cfg.sassLoaderParams}` +
           'sass-resources'

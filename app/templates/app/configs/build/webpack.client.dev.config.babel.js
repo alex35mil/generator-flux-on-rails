@@ -103,7 +103,7 @@ export default {
         test   : cfg.scssLoaderTest,
         loaders: [
           'style',
-          `css?${cfg.cssLoaderParams({ importLoaders: 2 })}`,
+          `css?${cfg.cssLoaderParams({ importLoaders: 3 })}`,
           'postcss',
           `sass?${cfg.sassLoaderParams}`,
           'sass-resources',

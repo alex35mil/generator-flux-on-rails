@@ -69,7 +69,7 @@ export default {
       {
         test   : cfg.scssLoaderTest,
         loaders: [
-          `css/locals?${cfg.cssLoaderParams({ importLoaders: 1 })}`,
+          `css/locals?${cfg.cssLoaderParams({ importLoaders: 2 })}`,
           `sass?${cfg.sassLoaderParams}`,
           'sass-resources',
         ],

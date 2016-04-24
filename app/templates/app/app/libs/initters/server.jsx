@@ -1,10 +1,10 @@
-import React                     from 'react';
-import ReactDOM                  from 'react-dom/server';
-import { match, RoutingContext } from 'react-router';
-import { Provider }              from 'react-redux';
-import transit                   from 'transit-immutable-js';
-import serialize                 from 'serialize-javascript';
-import jade                      from 'jade';
+import React                    from 'react';
+import ReactDOM                 from 'react-dom/server';
+import { match, RouterContext } from 'react-router';
+import { Provider }             from 'react-redux';
+import transit                  from 'transit-immutable-js';
+import serialize                from 'serialize-javascript';
+import jade                     from 'jade';
 
 import initStore     from 'app/libs/initters/store';
 import populateState from 'app/libs/populateState';
@@ -90,7 +90,7 @@ export default async (req, res, next, params) => {
 
         locals.body = ReactDOM.renderToString(
           <Provider store={store}>
-            <RoutingContext {...props} />
+            <RouterContext {...props} />
           </Provider>
         );
 

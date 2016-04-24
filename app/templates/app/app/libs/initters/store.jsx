@@ -2,8 +2,7 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunkMiddleware from 'redux-thunk';
 
 
-export default params => {
-
+export default (params) => {
   const { reducers, initialState } = params;
 
   const combinedReducers = combineReducers(reducers);
@@ -17,5 +16,4 @@ export default params => {
   );
 
   return storeCreator(...args);
-
 }

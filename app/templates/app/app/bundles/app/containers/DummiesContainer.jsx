@@ -3,8 +3,8 @@ import { bindActionCreators } from 'redux';
 import { connect }            from 'react-redux';
 
 import fetchData           from 'app/libs/decorators/fetchData';
-import * as authActions    from '../../actions/authActions';
-import * as dummiesActions from '../../actions/dummiesActions';
+import * as authActions    from '../actions/authActions';
+import * as dummiesActions from '../actions/dummiesActions';
 import Dummies             from '../components/Dummies/Dummies';
 
 

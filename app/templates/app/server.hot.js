@@ -7,7 +7,7 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
 import devBuildConfig from './configs/build/webpack.client.dev.config.babel';
-import { devPort }    from './configs/server/server.base';
+import serverConfig   from './configs/server/server.base';
 
 
 let initialCompile = true;
@@ -16,7 +16,7 @@ const server   = express();
 const compiler = webpack(devBuildConfig);
 
 server.use(webpackDevMiddleware(compiler, {
-  contentBase       : 'http://lvh.me:' + devPort,
+  contentBase       : `http://lvh.me:${serverConfig.devPort}`,
   publicPath        : devBuildConfig.output.publicPath,
   hot               : true,
   inline            : true,
@@ -38,10 +38,13 @@ server.use(webpackHotMiddleware(compiler));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
 
-server.listen(devPort, 'localhost', err => {
-  if (err) console.log(`=> OMG!!! 🙀 ${err}`);
+server.listen(serverConfig.devPort, 'localhost', err => {
+  if (err) {
+    console.log(`=> OMG!!! 🙀 ${err}`);
+  }
+
   console.log(
-    `=> 🔥  Webpack development server is running on port ${devPort}`
+    `=> 🔥  Webpack dev server is running on port ${serverConfig.devPort}`
   );
 });
 

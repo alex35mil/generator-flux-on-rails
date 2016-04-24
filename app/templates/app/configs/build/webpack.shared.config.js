@@ -38,6 +38,7 @@ export const resolveParams = {
     'configs': path.join(process.cwd(), 'configs'),
     'public' : path.join(process.cwd(), 'public'),
   },
+
   extensions: ['', '.js', '.jsx'],
 
 };
@@ -53,7 +54,7 @@ export const imagesLoaderTest = /\.(jpe?g|png|gif|svg|ico)$/;
 export const fontsLoaderTest  = /\.(woff2?|ttf|eot|svg)$/;
 export const jsonLoaderTest   = /\.json$/;
 
-export const cssLoaderParams = params => (
+export const cssLoaderParams = (params) => (
   JSON.stringify({
     modules       : true,
     importLoaders : params.importLoaders,
@@ -67,7 +68,7 @@ export const sassLoaderParams = (
   })
 );
 
-export const imagesLoaderParams = params => (
+export const imagesLoaderParams = (params) => (
   JSON.stringify({
     bypassOnDebug: params.bypassOnDebug,
     /* Uncomment this if you use SVG fonts */
@@ -82,6 +83,12 @@ export const urlLoaderParams  = `limit=10000&${fileLoaderParams}`;
 
 export const postcssModules = [ autoprefixer ];
 export const sassResources  = [
-  './app/assets/styles/imports/_index.scss',
-  './app/bundles/app/layouts/styles/imports/_index.scss',
+  './app/assets/styles/imports/media.scss',
+  './app/assets/styles/imports/fonts.scss',
+  './app/assets/styles/imports/elements.scss',
+  './app/bundles/app/layouts/styles/imports/layout.scss',
+  './app/bundles/app/layouts/styles/imports/colors.scss',
+  './app/bundles/app/layouts/styles/imports/fonts.scss',
+  './app/bundles/app/layouts/styles/imports/effects.scss',
+  './app/bundles/app/layouts/styles/imports/z-index.scss',
 ];
