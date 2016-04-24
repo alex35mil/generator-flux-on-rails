@@ -16,7 +16,6 @@ export default [
   'extract-text-webpack-plugin',
   'file-loader',
   'fly',
-  'fly-esnext',
   'fly-build-utils',
   'image-webpack-loader',
   'json-loader',

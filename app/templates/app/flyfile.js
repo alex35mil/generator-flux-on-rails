@@ -1,137 +1,115 @@
-import wpClientConfig from './configs/build/webpack.client.prod.config.babel';
-import wpServerConfig from './configs/build/webpack.server.config.babel';
+require('babel-register');
+
+const wpClientConfig = require('./configs/build/webpack.client.prod.config.babel').default;
+const wpServerConfig = require('./configs/build/webpack.server.config.babel').default;
+
+const expose = module.exports;
 
 
 /* ======= Sets */
 
-export default async function() {
+/** @desc Compile production build */
 
-  /** @desc Compile production build */
-
-  await this.start('runDevEnv');
-
-}
+expose.default = function* () {
+  yield this.start('runDevEnv');
+};
 
 
-export async function runDevEnv() {
+/** @desc Start development servers with development build */
 
-  /** @desc Start development servers with development build */
-
-  await this.start(['clear', 'lint', 'test']);
-  await this.start(['runDevBuild']);
-  await this.start(['followUp']);
-  await this.start(['runDevServers']);
-
-}
+expose.runDevEnv = function* runDevEnv() {
+  yield this.start(['clear', 'lint', 'test']);
+  yield this.start(['runDevBuild']);
+  yield this.start(['followUp']);
+  yield this.start(['runDevServers']);
+};
 
 
-export async function build() {
+/** @desc Make production build */
 
-  /** @desc Make production build */
-
-  await this.start(['clear', 'lint', 'test']);
-  await this.start(['compileProdBuild']);
-  await this.start(['followUp']);
-
-}
+expose.build = function* build() {
+  yield this.start(['clear', 'lint', 'test']);
+  yield this.start(['compileProdBuild']);
+  yield this.start(['followUp']);
+};
 
 
-export async function tryBuild() {
+/** @desc Start production servers with production build */
 
-  /** @desc Start production servers with production build */
-
-  await this.start(['clear', 'lint', 'test']);
-  await this.start(['compileProdBuild']);
-  await this.start(['followUp']);
-  await this.start(['runProdServers']);
-
-}
+expose.tryBuild = function* tryBuild() {
+  yield this.start(['clear', 'lint', 'test']);
+  yield this.start(['compileProdBuild']);
+  yield this.start(['followUp']);
+  yield this.start(['runProdServers']);
+};
 
 
 /* ======= Tasks */
 
-export async function clear() {
+/** @desc Clear `/build` & `/public` folders */
 
-  /** @desc Clear `/build` & `/public` folders */
-
-  await this.clear('build', 'public');
-
-}
+expose.clear = function* clear() {
+  yield this.clear('build', 'public');
+};
 
 
-export async function test() {
+/** @desc Run tests */
 
-  /** @desc Run tests */
-
-  await this.run('scripts/test');
-
-}
+expose.test = function* test() {
+  yield this.run('scripts/test');
+};
 
 
-export async function lint() {
+/** @desc Run linters */
 
-  /** @desc Run linters */
-
-  await this.run('scripts/lint');
-
-}
+expose.lint = function* lint() {
+  yield this.run('scripts/lint');
+};
 
 
-export async function runDevBuild() {
+/** @desc Run hot reloadable development server and development build */
 
-  /** @desc Run hot reloadable development server and development build */
-
-  await this.run('mkdir -p public/assets', { method: 'exec' });
-  await this.run('server.dev.js', { method: 'fork', resolveOn: 'message' });
-  await this.compileAndWatch(wpServerConfig);
-
-}
+expose.runDevBuild = function* runDevBuild() {
+  yield this.run('mkdir -p public/assets', { method: 'exec' });
+  yield this.run('server.dev.js', { method: 'fork', resolveOn: 'message' });
+  yield this.compileAndWatch(wpServerConfig);
+};
 
 
-export async function compileProdBuild() {
+/** @desc Compile production build */
 
-  /** @desc Compile production build */
-
-  await this.run('mkdir -p public/assets', { method: 'exec' });
-  await this.compile(wpClientConfig);
-  await this.compile(wpServerConfig);
-
-}
+expose.compileProdBuild = function* compileProdBuild() {
+  yield this.run('mkdir -p public/assets', { method: 'exec' });
+  yield this.compile(wpClientConfig);
+  yield this.compile(wpServerConfig);
+};
 
 
-export async function runDevServers() {
+/** @desc Run reloadable development servers with development build */
 
-  /** @desc Run reloadable development servers with development build */
-
+expose.runDevServers = function* runDevServers() {
   const servers = this.getServers({ hot: true });
-
-  await this.runAsync(servers);
-
-}
+  yield this.runAsync(servers);
+};
 
 
-export async function runProdServers() {
+/** @desc Run production servers with production build */
 
-  /** @desc Run production servers with production build */
-
+expose.runProdServers = function* runProdServers() {
   const servers = this.getServers();
-
-  await this.runAsync(servers);
-
-}
+  yield this.runAsync(servers);
+};
 
 
-export async function followUp() {
+/** @desc Perform follow-up operations after build */
 
-  /** @desc Perform follow-up operations after build */
-
-  await this.copy([{
+expose.followUp = function* followUp() {
+  yield this.copy([{
     target: 'app/assets/root/.',
     dest  : 'public/',
   }]);
-  await this.move([{
+  yield this.move([{
     target: 'build/*.ico build/*.png',
     dest  : 'public/assets/',
   }]);
-
-}
+};
